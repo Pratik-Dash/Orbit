@@ -1,38 +1,180 @@
 .App {
   text-align: center;
 }
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+html{
+  height: 100%;
 }
+/*landing page styles*/
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.landing-page{
+  display: flex;
+  height: 100%;
+  overflow: hidden;
 }
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.landing-page-image-container{
+  height:100vh;
+}
+.landing-page-image{
+  height:100%;
+}
+.landing-page-actions-container{
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
+  background-color: #171717;
+  flex: 1;
+  color: azure;
   align-items: center;
+}
+
+.action-text{
+  display: flex;
+  flex-direction: column;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  align-items: flex-start;
+  padding: 1rem;
+  margin-bottom: 10px;
+}
+.action-text>span{
+  font-size: x-large;
+  font-weight: 700;
+  opacity: .6;
+  text-align: left;
+  margin-bottom: 15px;
 }
 
-.App-link {
-  color: #61dafb;
+.action-text>span>span{
+
+  color: #B14AED;
+  
+}
+.landing-page-action-button{
+  padding: .7rem;
+  font-size: medium;
+  font-weight: 600;
+  background-color: #B14AED;
+  color: #fff;
+  width: 20rem;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: .5s;
+  margin-bottom: 2rem;
+
+}
+.landing-page-action-button:hover{
+  background-color: #592E83;
+ 
+}
+.already-have-account-text{
+  color: #B14AED;
+  font-size: 14px;
+  font-weight: 500;
+  margin-bottom: 2rem;
+  cursor: pointer;
+  transition: .5s;
+}
+.already-have-account-text:hover{
+  color: #592E83;
+}
+.website-logo-landing-page{
+  color: #B14AED;
+  font-weight: 900;
+  font-size: 40px;
+  align-self: flex-end;
+  margin-right: 1rem;
+  
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+/*login page styles*/
+
+.login-input-container{
+  
+  height: auto;
+  width: 20rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+ 
+  padding: 2rem;
+  background-color: #28282B;
+  border-radius: .6rem;
+  
+}
+.login-page{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #171717;
+}
+
+.label-container{
+  text-align: left;
+  width: 100%;
+  color: darkgray;
+}
+.email-input{
+
+  width: 100%;
+  box-sizing: border-box;
+  padding: .5rem;
+  margin-bottom: 20px;
+  border: 2px solid #B14AED;
+  background-color: transparent;
+  color: #fff;
+  transition: .5s;
+}
+.pass-input{
+
+  width: 100%;
+  box-sizing: border-box;
+  padding: .5rem;
+  margin-bottom: 20px;
+  border: 2px solid #B14AED;
+  background-color: transparent;
+  color: #fff;
+  transition: .5s;
+}
+.pass-input:hover{
+  border: 2px solid #592E83;
+}
+.email-input:hover{
+  border: 2px solid #592E83;
+}
+.pass-input:focus{
+  border: 2px solid #592E83;
+}
+.email-input:focus{
+  border: 2px solid #592E83;
+}
+
+.remember-me-container{
+  text-align: left;
+  margin-bottom: 30px;
+  color: darkgray;
+}
+.login-button{
+  width: 100%;
+  padding: .7rem;
+  background-color: #B14AED;
+  color: #fff;
+  border-bottom: 10px;
+  cursor: pointer;
+  transition: .5s;
+}
+.login-button:hover{
+  background-color: #592E83;
+}
+.website-logo-login-page{
+  color: #B14AED;
+  font-weight: 900;
+  font-size: 40px;
+  margin-right: 1rem;
+  border-bottom: 10px;
+}
+.create-new-account-text{
+
+  color: #B14AED;
+  cursor: pointer;
 }
