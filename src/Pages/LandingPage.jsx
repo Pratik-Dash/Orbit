@@ -1,6 +1,6 @@
 import React from 'react'
 
-export const LandingPage = () => {
+const LandingPage = () => {
   return (
     <div className='landing-page'>
       <div className='landing-page-image-container'>

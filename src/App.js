@@ -1,10 +1,11 @@
 import {BrowserRouter as Router, Routes,Route} from "react-router-dom"
 import './App.css';
- import Mockman from "../node_modules/mockman/lib/mockman";
 import SignupPage from "./Pages/SignupPage";
 import { SocialMediaContext, SocialMediaContextProvider } from "./Context/DataContext";
 import LandingPage from "./Pages/LandingPage";
 import LoginPage from "./Pages/LoginPage";
+import Sidebar from "./Components/Sidebar";
+import WriteSomething from "./Components/WriteSomething";
 
 function App() {
   return (
@@ -15,8 +16,9 @@ function App() {
       <Route path = "/" element = {<LandingPage/>}/>
       <Route path = "/login" element = {<LoginPage/>}/>
       <Route path = "/sign-up" element = {<SignupPage/>}/>
-        </Routes>
-        </SocialMediaContextProvider>
+      <Route path = "/component-test" element = {<WriteSomething/>}/>
+      </Routes>
+      </SocialMediaContextProvider>
       
     </div>
     </Router>

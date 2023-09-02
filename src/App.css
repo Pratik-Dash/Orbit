@@ -178,3 +178,52 @@ html{
   color: #B14AED;
   cursor: pointer;
 }
+
+/*sidebar*/
+.sidebar{
+  
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 90vh;
+  width: 20%;
+  padding: 1rem;
+  overflow-y: hidden;
+
+}
+.sidebar-options{
+  
+  display: flex;
+  flex-direction: column;
+  height: 30%;
+  justify-content: space-evenly;
+  text-align: center;
+}
+.sidebar-option{
+  display: flex;
+  align-items: center;
+  gap:.5rem;
+  font-size: 15px;
+  padding:.5rem;
+  cursor: pointer;
+}
+/*write-something*/
+.write-something{
+  display: flex;
+  justify-content: center;
+  padding: 1rem;
+}
+.write-something-container{
+  width: 60%;
+  padding: 1rem;
+  display: flex;
+  justify-content: center;
+  gap: .5rem;
+  
+}
+.profileAvatar{
+  align-self: flex-start;
+}
+.write-something-area>textarea{
+  padding: .5rem;
+}
