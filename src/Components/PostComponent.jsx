@@ -1,6 +1,11 @@
-import React from 'react'
+import React, { useContext } from 'react'
+import { SocialMediaContext } from '../Context/DataContext'
 
-const PostComponent = () => {
+const PostComponent = ({postData}) => {
+  const {users} = useContext(SocialMediaContext)
+  const currentUser = users.find(user => user.username.toLowerCase() === postData.username.toLowerCase())
+  const {likes:{likeCount}} = postData
+  console.log(postData)
   return (
     <div className='post'>
       
@@ -11,12 +16,16 @@ const PostComponent = () => {
       </div>
       
       <div className='post-text'>
-      <div className='post-profile-name'><span className='post-author-name'>{`Pratik Dash`}</span><span className='social-media-handle'>{`  @pratikdash `}</span> <span className='post-time'>{` • 1 Min ago`}</span></div>
-        This is a test post. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+      <div className='post-profile-name'><span className='post-author-name'>{`${currentUser.firstName} ${currentUser.lastName}`}</span><span className='social-media-handle'>{` ${currentUser.username}`}</span> <span className='post-time'>{` • 1 Min ago`}</span></div>
+        {postData.content}
         </div>
       </div>
      <div className='post-actions'>
+     <div className='post-impressions'>
+     <span>{` ${likeCount}`}</span>
      <span class="material-symbols-rounded" style = {{color:"#B14AED"}}>favorite</span>
+     </div>
+     
      <span class="material-symbols-rounded" style = {{color:"#B14AED"}}>mode_comment</span>
      <span class="material-symbols-rounded" style = {{color:"#B14AED"}}>send</span>
      <span class="material-symbols-rounded" style = {{color:"#B14AED"}}>bookmark_add</span>
