@@ -1,7 +1,10 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import ProfileStats from '../Components/ProfileStats'
+import { SocialMediaContext } from '../Context/DataContext'
 
 const Profile = () => {
+  const {posts} = useContext(SocialMediaContext)
+  
   return (
     <div className='profile-page'>
       <div className='profile-info'>

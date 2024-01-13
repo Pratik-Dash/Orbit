@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 const LandingPage = () => {
   return (
@@ -19,7 +20,10 @@ const LandingPage = () => {
             <button className='landing-page-action-button'>
                 Join Now
             </button>
+            <Link to = "/login" style={{ textDecoration: 'none' }}>
             <div className='already-have-account-text'>Already have an account?</div>
+
+            </Link>
         </div>
       </div>
     </div>

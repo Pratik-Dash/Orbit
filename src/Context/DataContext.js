@@ -1,34 +1,65 @@
 import React, { useEffect, useState } from "react"
-
+import axios from "axios"
+import { useNavigate } from "react-router-dom"
 const SocialMediaContext = React.createContext()
 
 const SocialMediaContextProvider = ({children}) => {
 
    const [posts,setPosts]  = useState([])
    const [users,setUsers] = useState([])
+   const [errorMessage,setErrorMessage] = useState(null)
+    const navigate = useNavigate()
+  
 
    useEffect(() => {
-    
-      const fetchData = async() => {
+
+    const fetchPosts = async() => {
+      try{
+          const {data:{posts}} = await axios.get("/api/posts")
+          setPosts(posts)  
+      }
+      catch(error){
+          console.log(error)
+      }
+    }
+      
+      const fetchUsers = async() => {
         try{
-            const postResponse = await fetch("/api/posts")
-            const {posts} = await postResponse.json()
-            console.log(posts)
-            const userResponse = await fetch("/api/users")
-            const {users} = await userResponse.json()
-            setPosts(posts)
-            setUsers(users)
-            
+          const{data:{users}} = await axios.get("/api/users")
+          setUsers(users)
         }
         catch(error){
-            console.log(error)
+          console.log(error)
         }
       }
-      fetchData()
-   }, [setPosts,setUsers])
+    fetchPosts();
+   fetchUsers();
+   },[])
 
+   const loginUser = async(username,password) => {
+    try{
+
+      const {data:{encodedToken}} = await axios.post("/api/auth/login",{username,password})
+      localStorage.setItem("authToken",encodedToken)
+     const redirectUrl = localStorage.getItem('redirectUrl')
+     if(redirectUrl){
+      navigate(redirectUrl)
+      localStorage.removeItem('redirectUrl')
+     }
+     else{
+      navigate("/")
+     }
+    }
+    catch(error){
+      setErrorMessage("Invalid Credentials")
+    }
+   
+   }
+   const logoutUser = () => {
+    localStorage.removeItem("authToken")
+   }
    return(
-    <SocialMediaContext.Provider value = {{users,posts}}>
+    <SocialMediaContext.Provider value = {{users,posts,errorMessage,loginUser,logoutUser}}>
       {children}
     </SocialMediaContext.Provider>
    )

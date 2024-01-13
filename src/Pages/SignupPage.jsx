@@ -1,5 +1,6 @@
 import React, { useContext } from 'react'
 import { SocialMediaContext } from '../Context/DataContext'
+import { Link } from 'react-router-dom'
 
 const SignupPage = () => {
   const {users} = useContext(SocialMediaContext)
@@ -66,7 +67,10 @@ const SignupPage = () => {
           </div>
 
           <button className='login-button'>Sign up</button>
+          <Link to="/login" style={{textDecoration:"none"}}>
           <div className='create-new-account-text'>Already have an account</div>
+          </Link>
+          
       </div>
     </div>
   )

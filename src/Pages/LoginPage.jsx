@@ -1,17 +1,32 @@
-import React from 'react'
+import React, { useContext,useState } from 'react'
+import { SocialMediaContext } from '../Context/DataContext'
+import { Link } from 'react-router-dom'
 
 export const LoginPage = () => {
+  const {loginUser,errorMessage} = useContext(SocialMediaContext)
+  const[userName,setUserName] = useState('')
+  const[password,setPassword] = useState('')
+
+  const loginCurrentUser = () => {
+    try{
+      loginUser(userName,password)
+    }
+    catch(error){
+      return error
+    }
+    
+  }
   return (
     <div className='login-page'>
     <div className='website-logo-login-page'>Orbit</div>
       <div className='login-input-container'>
       <div className='label-container'>
-          <label htmlFor='label-conatiner'>
-            Email Address
+          <label htmlFor='username-input'>
+            Username
           </label>
           </div>
           <div className='input-container'>
-          <input type = "email" id = "email-input" className='email-input'/>
+          <input type = "text" id = "username-input" className='email-input' onChange={(e) => setUserName(e.target.value)} value={userName}/>
           </div>
           <div className='label-container'>
           <label htmlFor='pass-input'>
@@ -19,14 +34,17 @@ export const LoginPage = () => {
           </label>
           </div>
           <div className='input-container'>
-          <input type = "password" id = "pass-input" className='pass-input'/>
+          <input type = "password" id = "pass-input" className='pass-input' onChange={(e) => setPassword(e.target.value)} value={password}/>
           </div>
           <div className='remember-me-container'>
             <input type= "checkbox" id='remember-me-flag'/><label htmlFor='remember-me-flag'>Remember me?</label>
           </div>
 
-          <button className='login-button'>Login</button>
+          <button className='login-button' onClick={loginCurrentUser}>Login</button>
+          {errorMessage && <div style={{color:"red"}}>Invalid Credentials</div>}
+          <Link to = "/sign-up" style={{textDecoration:"none"}}>
           <div className='create-new-account-text'>Create a new account</div>
+          </Link>
       </div>
     </div>
   )

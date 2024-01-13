@@ -12,20 +12,23 @@ import Profile from "./Pages/Profile";
 import SinglePost from "./Components/SinglePost";
 import Homepage from "./Pages/Homepage,";
 import Nabvar from "./Components/Nabvar";
+import ProtectRoutes from "./Components/HigherOrderRouteProtection";
 
 function App() {
   return (
     <Router>
     <div className="App">
     <SocialMediaContextProvider>
-    <Nabvar/>
+    
       <Routes>
-      <Route path = "/" element = {<LandingPage/>}/>
-      <Route path = "/home" element = {<Homepage/>}/>
+     
+      <Route path = "/" element = {<ProtectRoutes><LandingPage/></ProtectRoutes>}/>
+      <Route path = "/home" element = {<ProtectRoutes><Homepage/></ProtectRoutes>}/>
       <Route path = "/login" element = {<LoginPage/>}/>
       <Route path = "/sign-up" element = {<SignupPage/>}/>
       <Route path = "/component-test" element = {<SinglePost/>}/>
-      <Route path = "/profile" element = {<Profile/>}/>
+      <Route path = "/profile" element = {<ProtectRoutes pathName = "/profile"><Profile/></ProtectRoutes>}/>
+      
       </Routes>
       </SocialMediaContextProvider>
       

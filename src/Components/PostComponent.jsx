@@ -5,7 +5,7 @@ const PostComponent = ({postData}) => {
   const {users} = useContext(SocialMediaContext)
   const currentUser = users.find(user => user.username.toLowerCase() === postData.username.toLowerCase())
   const {likes:{likeCount}} = postData
-  console.log(postData)
+  
   return (
     <div className='post'>
       
