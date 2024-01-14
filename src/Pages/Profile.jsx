@@ -9,9 +9,7 @@ const Profile = () => {
   
   return (
     <div className='profile-page'>
-    <div className='sidebar-space'>
-        <Sidebar/>
-      </div>
+    
       <div className='profile-info'>
         <div className='profile-image-container'>
             <img className='profile-image' src='https://i.pinimg.com/1200x/ff/39/08/ff390870b2b9cd855a271222f4afbdc6.jpg' alt='profile'/>
@@ -27,9 +25,7 @@ const Profile = () => {
       </div>
       </div>
       
-      <div className='right-component'>
-        <FindAndFollowPeople/>
-      </div>
+      
     </div>
   )
 }

@@ -188,11 +188,14 @@ body{
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  width: 15%;
   height: 90vh;
-  width: 100%;
   padding: 1rem;
   overflow-y: hidden;
+  margin-top: 1rem;
   margin-left: 1rem;
+  background-color: white;
+  
 
 }
 .sidebar-options{
@@ -225,7 +228,6 @@ body{
   align-items: center;
   padding: 1rem;
   flex-direction: column;
-  width: 100%;
   margin: 0 auto;
   background-color: white;
   margin-bottom: 1rem;
@@ -278,7 +280,7 @@ body{
   flex-direction: column;
   justify-content:center;
   height: 60vh;
-  width: 100%;
+  width: 20%;
   padding: 1rem;
   background-color: white;
   gap: 2rem;
@@ -393,26 +395,19 @@ body{
   
 }
 /*profile page */
+.profile-page{
+  padding: 1rem;
+  margin-top: 1rem;
+  width: 66%;
 
+}
 .profile-image{
   height: 112px;
   width: 112px;
   border-radius: 50%;
 }
-.profile-page{
 
-  
-  display: flex;
-  margin: 1rem auto;
-  justify-content: space-evenly;
- 
-  
-  
-}
-.profile-info{
-  
-  width: 60%;
-}
+
 .profile-name{
   font-weight: 650;
   font-size: x-large;
@@ -532,14 +527,12 @@ body{
 
 /*Home page */
 .home-page{
-  display: flex;
-  margin: 2rem;
-  justify-content: space-between;
   
+  padding: 1rem;
+  margin-top: 1rem;
+  max-width: 60%;
 }
-.middle-content{
- width: 60%;
-}
+
 
 /*nav*/
 .nav-bar{
@@ -556,4 +549,12 @@ body{
   font-weight: 600;
   margin-bottom: .5rem;
   text-align: left;
+}
+/*Layout*/
+
+.main{
+
+  display: flex;
+  justify-content: space-between;
+
 }

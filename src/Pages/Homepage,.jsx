@@ -9,19 +9,15 @@ const Homepage = () => {
   const {posts} = useContext(SocialMediaContext)
   return (
     <div className='home-page'>
-      <div className='sidebar-space'>
-        <Sidebar/>
-      </div>
-      <div className='middle-content'>
-      <WriteSomething/>
+     
+                                
+      <WriteSomething/> 
       <div className='sub-heading'>Latest Posts</div>
       {
         posts.map(post => <PostComponent postData = {post}/>)
       }
-      </div>
-      <div className='right-component'>
-        <FindAndFollowPeople/>
-      </div>
+      
+      
     </div>
   )
 }
