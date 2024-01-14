@@ -13,6 +13,7 @@ import SinglePost from "./Components/SinglePost";
 import Homepage from "./Pages/Homepage,";
 import Nabvar from "./Components/Nabvar";
 import ProtectRoutes from "./Components/HigherOrderRouteProtection";
+import Layout from "./Components/AppLayout";
 
 function App() {
   return (
@@ -23,11 +24,11 @@ function App() {
       <Routes>
      
       <Route path = "/" element = {<ProtectRoutes><LandingPage/></ProtectRoutes>}/>
-      <Route path = "/home" element = {<ProtectRoutes><Homepage/></ProtectRoutes>}/>
+      <Route path = "/home" element = {<ProtectRoutes><Layout><Homepage/></Layout></ProtectRoutes>}/>
       <Route path = "/login" element = {<LoginPage/>}/>
       <Route path = "/sign-up" element = {<SignupPage/>}/>
       <Route path = "/component-test" element = {<SinglePost/>}/>
-      <Route path = "/profile" element = {<ProtectRoutes pathName = "/profile"><Profile/></ProtectRoutes>}/>
+      <Route path = "/profile" element = {<ProtectRoutes><Layout><Profile/></Layout></ProtectRoutes>}/>
       
       </Routes>
       </SocialMediaContextProvider>
