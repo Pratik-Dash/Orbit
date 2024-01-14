@@ -1,12 +1,17 @@
 import React, { useContext } from 'react'
 import ProfileStats from '../Components/ProfileStats'
 import { SocialMediaContext } from '../Context/DataContext'
+import Sidebar from '../Components/Sidebar'
+import FindAndFollowPeople from '../Components/FindAndFollowPeople'
 
 const Profile = () => {
   const {posts} = useContext(SocialMediaContext)
   
   return (
     <div className='profile-page'>
+    <div className='sidebar-space'>
+        <Sidebar/>
+      </div>
       <div className='profile-info'>
         <div className='profile-image-container'>
             <img className='profile-image' src='https://i.pinimg.com/1200x/ff/39/08/ff390870b2b9cd855a271222f4afbdc6.jpg' alt='profile'/>
@@ -17,9 +22,13 @@ const Profile = () => {
         <p className='profile-about'>
             QA Enginner | front-end developer. Exploring new domains in tech everyday.
         </p>
-      </div>
-      <div className='profile-stat-container-container'>
+        <div className='profile-stat-container-container'>
       <ProfileStats/>
+      </div>
+      </div>
+      
+      <div className='right-component'>
+        <FindAndFollowPeople/>
       </div>
     </div>
   )
