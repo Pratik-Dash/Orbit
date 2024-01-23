@@ -244,6 +244,24 @@ body{
 .profileAvatar{
   align-self: flex-start;
 }
+.primary-profile-btn{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: .5rem;
+  
+}
+.profile-logout-btn{
+  padding: .3rem;
+  margin-top: 10px;
+  font-weight: 600;
+  background-color: transparent;
+  border: 1px solid gray;
+  box-sizing: border-box;
+  font-size: small;
+  cursor: pointer;
+  color: #B14AED;
+}
 .write-something-area>textarea{
   padding: .5rem;
   width: 100%;
@@ -429,6 +447,7 @@ body{
   box-sizing: border-box;
   font-size: small;
   cursor: pointer;
+  color: #B14AED;
 
 }
 .profile-about{
@@ -445,6 +464,7 @@ body{
   max-width: 40%;
   margin: 0 auto;
   background-color: #fff;
+  
   
 }
 .following-count{
@@ -557,4 +577,10 @@ body{
   display: flex;
   justify-content: space-between;
 
+}
+
+.currentUser-posts{
+  margin: 1rem auto;
+  max-width: 90%;
+  align-self: center;
 }

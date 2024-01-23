@@ -32,5 +32,29 @@ export const posts = [
     createdAt: formatDate(),
     updatedAt: formatDate(),
   },
+  {
+    _id: uuid(),
+    content:"This is a test post2",
+    likes: {
+      likeCount: 2,
+      likedBy: ["pratikdash", "rishabhdubey"],
+      dislikedBy: ["tanaypratap"],
+    },
+    username: "pratikdash",
+    createdAt: formatDate(),
+    updatedAt: formatDate(),
+  },
+  {
+    _id: uuid(),
+    content:"This is a test post3",
+    likes: {
+      likeCount: 2,
+      likedBy: ["pratikdash", "rishabhdubey"],
+      dislikedBy: ["tanaypratap"],
+    },
+    username: "pratikdash",
+    createdAt: formatDate(),
+    updatedAt: formatDate(),
+  },
   
 ];

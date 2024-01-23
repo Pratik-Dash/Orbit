@@ -15,7 +15,7 @@ const ProtectRoutes = ({children,pathName}) => {
         }
     },[])
 
-    return authToken?children:setRedirectionUrl()
+    return authToken && authToken!== undefined?children:setRedirectionUrl()
 }
 
 export default ProtectRoutes 

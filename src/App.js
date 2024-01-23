@@ -28,7 +28,7 @@ function App() {
       <Route path = "/login" element = {<LoginPage/>}/>
       <Route path = "/sign-up" element = {<SignupPage/>}/>
       <Route path = "/component-test" element = {<SinglePost/>}/>
-      <Route path = "/profile" element = {<ProtectRoutes><Layout><Profile/></Layout></ProtectRoutes>}/>
+      <Route path = "/profile" element = {<ProtectRoutes pathName="/profile"><Layout><Profile/></Layout></ProtectRoutes>}/>
       
       </Routes>
       </SocialMediaContextProvider>

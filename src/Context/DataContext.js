@@ -7,6 +7,7 @@ const SocialMediaContextProvider = ({children}) => {
 
    const [posts,setPosts]  = useState([])
    const [users,setUsers] = useState([])
+   const [loggedInUser,setLoggedInUser]  = useState(null)
    const [errorMessage,setErrorMessage] = useState(null)
     const navigate = useNavigate()
   
@@ -22,6 +23,7 @@ const SocialMediaContextProvider = ({children}) => {
           console.log(error)
       }
     }
+   
       
       const fetchUsers = async() => {
         try{
@@ -39,12 +41,19 @@ const SocialMediaContextProvider = ({children}) => {
    const loginUser = async(username,password) => {
     try{
 
-      const {data:{encodedToken}} = await axios.post("/api/auth/login",{username,password})
+      const {data:{encodedToken,foundUser}} = await axios.post("/api/auth/login",{username,password})
+      
+      
       localStorage.setItem("authToken",encodedToken)
+      console.log(foundUser)
+      localStorage.setItem("currentLoggedInUser",JSON.stringify(foundUser))
+      setLoggedInUser(foundUser)
+
      const redirectUrl = localStorage.getItem('redirectUrl')
      if(redirectUrl){
       navigate(redirectUrl)
       localStorage.removeItem('redirectUrl')
+     
      }
      else{
       navigate("/")
@@ -56,10 +65,11 @@ const SocialMediaContextProvider = ({children}) => {
    
    }
    const logoutUser = () => {
-    localStorage.removeItem("authToken")
+    localStorage.clear()
+    navigate("/")
    }
    return(
-    <SocialMediaContext.Provider value = {{users,posts,errorMessage,loginUser,logoutUser}}>
+    <SocialMediaContext.Provider value = {{users,loggedInUser,posts,errorMessage,loginUser,logoutUser}}>
       {children}
     </SocialMediaContext.Provider>
    )
