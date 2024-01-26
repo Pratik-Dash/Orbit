@@ -8,14 +8,14 @@ const Profile = () => {
   const userObject = localStorage.getItem("currentLoggedInUser")
    const loggedInUser = JSON.parse(userObject)
   const loggedInUserPosts = posts.filter(post => post.username.toLowerCase() === loggedInUser.username.toLowerCase())
-
+console.log(loggedInUser.profilePic)
   
   return (
     <div className='profile-page'>
     
       <div className='profile-info'>
         <div className='profile-image-container'>
-            <img className='profile-image' src='https://i.pinimg.com/1200x/ff/39/08/ff390870b2b9cd855a271222f4afbdc6.jpg' alt='profile'/>
+            <img className='profile-image' src={loggedInUser.profilePic} alt='profile'/>
         </div>
         {loggedInUser && <div className='profile-name'>{`${loggedInUser.firstName} ${loggedInUser.lastName}`}</div>}
         <div className='profile-handle'>{loggedInUser.username}</div>
@@ -29,6 +29,7 @@ const Profile = () => {
         <div className='profile-stat-container-container'>
       <ProfileStats/>
      <div className='currentUser-posts'>
+     <span className='posts-header'><h2>{`Your posts`}</h2></span>
      {
         loggedInUserPosts && loggedInUserPosts.map(post => 
         <PostComponent postData = {post}/>

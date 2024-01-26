@@ -1,7 +1,9 @@
 import React, { useContext } from 'react'
 import { SocialMediaContext } from '../Context/DataContext'
+import { useNavigate } from 'react-router-dom'
 
 const FindAndFollowPeople = () => {
+  const navigate = useNavigate()
     const {users} = useContext(SocialMediaContext)
   return (
     <div className='right-side-bar'>
@@ -13,8 +15,9 @@ const FindAndFollowPeople = () => {
       {
         users.map(user => 
             <div className='people-item'>
-            <span class="material-symbols-rounded">account_circle</span>
-            <div className='people-name-container'>
+            {/* <span class="material-symbols-rounded">account_circle</span> */}
+            <span className='find-and-follow-people-profile-pic' onClick={()=> navigate(`/profile/${user._id}`)}><img src={user.profilePic} alt='user profile picture'/></span>
+            <div className='people-name-container' onClick={()=> navigate(`/profile/${user._id}`)}>
             <span>{`${user.firstName} ${user.lastName}`}</span>
             </div>
             <span className='follow-btn'> Follow +</span>
