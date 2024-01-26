@@ -291,6 +291,13 @@ body{
   gap: 10px;
   width: 100%;
 }
+.posts-header{
+  display: flex;
+  justify-content: flex-start;
+}
+.posts-header>h2{
+  border-bottom: 1px solid #B14AED;
+}
 /* find and follow people */
 
 .right-side-bar{
@@ -314,6 +321,13 @@ body{
   justify-content: space-between;
   text-align: left;
 }
+.find-and-follow-people-profile-pic>img{
+  height: 30px;
+  width: 30px;
+  border-radius: 5rem;
+  border: 3px solid #B14AED;
+  cursor: pointer;
+}
 .people-search-input{
   padding: .6rem;
   box-sizing: border-box;
@@ -325,6 +339,7 @@ body{
 }
 .people-name-container{
   width: 50%;
+  cursor: pointer;
 }
 .follow-btn{
   color:#B14AED;
@@ -449,6 +464,18 @@ body{
   cursor: pointer;
   color: #B14AED;
 
+}
+.follow-profile-btn{
+  padding: .6rem;
+  margin-top: 10px;
+  width: 150px;
+  font-weight: 600;
+  background-color: #B14AED;
+  border: 1px solid gray;
+  box-sizing: border-box;
+  font-size: small;
+  cursor: pointer;
+  color: white;
 }
 .profile-about{
   max-width: 60%;

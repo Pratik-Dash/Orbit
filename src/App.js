@@ -14,6 +14,7 @@ import Homepage from "./Pages/Homepage,";
 import Nabvar from "./Components/Nabvar";
 import ProtectRoutes from "./Components/HigherOrderRouteProtection";
 import Layout from "./Components/AppLayout";
+import ThirdPersonProfile from "./Pages/ThirdPersonProfile";
 
 function App() {
   return (
@@ -28,6 +29,7 @@ function App() {
       <Route path = "/login" element = {<LoginPage/>}/>
       <Route path = "/sign-up" element = {<SignupPage/>}/>
       <Route path = "/component-test" element = {<SinglePost/>}/>
+      <Route path = "/profile/:userId" element = {<ProtectRoutes><Layout><ThirdPersonProfile/></Layout></ProtectRoutes>}/>
       <Route path = "/profile" element = {<ProtectRoutes pathName="/profile"><Layout><Profile/></Layout></ProtectRoutes>}/>
       
       </Routes>
