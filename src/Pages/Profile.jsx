@@ -2,9 +2,9 @@ import React, { useContext } from 'react'
 import ProfileStats from '../Components/ProfileStats'
 import { SocialMediaContext } from '../Context/DataContext'
 import PostComponent from '../Components/PostComponent'
-
+import { InfinitySpin } from 'react-loader-spinner'
 const Profile = () => {
-  const {posts,logoutUser} = useContext(SocialMediaContext)
+  const {posts,logoutUser,isUserLoading} = useContext(SocialMediaContext)
   const userObject = localStorage.getItem("currentLoggedInUser")
    const loggedInUser = JSON.parse(userObject)
   const loggedInUserPosts = posts.filter(post => post.username.toLowerCase() === loggedInUser.username.toLowerCase())
@@ -13,7 +13,14 @@ console.log(loggedInUser.profilePic)
   return (
     <div className='profile-page'>
     
-      <div className='profile-info'>
+      {isUserLoading?<div className='loader'>
+      <InfinitySpin
+        visible={true}
+        width="200"
+        color="#B14AED"
+        ariaLabel="infinity-spin-loading"
+      />
+      </div>:<div className='profile-info'>
         <div className='profile-image-container'>
             <img className='profile-image' src={loggedInUser.profilePic} alt='profile'/>
         </div>
@@ -37,7 +44,7 @@ console.log(loggedInUser.profilePic)
       }
      </div>
       </div>
-      </div>
+      </div>}
       
       
     </div>
