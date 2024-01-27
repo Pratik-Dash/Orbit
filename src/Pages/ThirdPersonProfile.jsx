@@ -1,20 +1,27 @@
-import React, { useContext } from 'react'
+import React, { useContext, useState } from 'react'
 import ProfileStats from '../Components/ProfileStats'
 import { SocialMediaContext } from '../Context/DataContext'
 import PostComponent from '../Components/PostComponent'
 import { useParams } from 'react-router-dom'
-
+import { InfinitySpin } from 'react-loader-spinner'
 const ThirdPersonProfile = () => {
-  const {posts,users} = useContext(SocialMediaContext)
+  const {posts,users,isUserLoading} = useContext(SocialMediaContext)
   const {userId} = useParams()
-  const selectedUser = users.find(user => user._id === userId)
-  const selectedUserPosts = posts.filter(post => post.username.toLowerCase() === selectedUser.username.toLowerCase())
+  const selectedUser = users && users.find(user => user._id === userId)
+  console.log(users)
+  console.log(selectedUser)
+  const selectedUserPosts = selectedUser && posts.filter(post => post.username.toLowerCase() === selectedUser.username.toLowerCase())
 
   
   return (
     <div className='profile-page'>
     
-      <div className='profile-info'>
+      {isUserLoading?<div className='loader'><InfinitySpin
+        visible={true}
+        width="200"
+        color="#B14AED"
+        ariaLabel="infinity-spin-loading"
+      /></div>:<div className='profile-info'>
         <div className='profile-image-container'>
             <img className='profile-image' src={selectedUser.profilePic} alt='profile'/>
         </div>
@@ -38,7 +45,7 @@ const ThirdPersonProfile = () => {
       }
      </div>
       </div>
-      </div>
+      </div>}
       
       
     </div>
