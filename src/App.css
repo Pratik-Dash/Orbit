@@ -282,8 +282,18 @@ body{
   color: white;
   width: 100px;
   box-sizing: border-box;
+  cursor: pointer;
 
   
+}
+.disabled-post-btn{
+  padding: .6rem;
+  font-weight: 500;
+  background-color: gray;
+  color: white;
+  width: 100px;
+  box-sizing: border-box;
+  cursor: not-allowed;
 }
 .write-something-area{
   display: flex;

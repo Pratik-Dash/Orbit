@@ -1,12 +1,13 @@
 import React, { useContext } from 'react'
-import Sidebar from '../Components/Sidebar';
 import PostComponent from '../Components/PostComponent';
-import FindAndFollowPeople from '../Components/FindAndFollowPeople';
 import WriteSomething from '../Components/WriteSomething';
 import { SocialMediaContext } from '../Context/DataContext';
+import { InfinitySpin } from 'react-loader-spinner';
 
 const Homepage = () => {
-  const {posts} = useContext(SocialMediaContext)
+  const {posts,createPostLoader} = useContext(SocialMediaContext)
+  const orderPostsBycreatedDate =  posts.sort((post1,post2) => post2.createdAt - post1.createdAt) 
+  console.log(orderPostsBycreatedDate)
   return (
     <div className='home-page'>
      
@@ -14,7 +15,12 @@ const Homepage = () => {
       <WriteSomething/> 
       <div className='sub-heading'>Latest Posts</div>
       {
-        posts.map(post => <PostComponent postData = {post}/>)
+        createPostLoader?<InfinitySpin
+        visible={true}
+        width="200"
+        color="#B14AED"
+        ariaLabel="infinity-spin-loading"
+      />: orderPostsBycreatedDate.map(post => <PostComponent postData = {post}/>)
       }
       
       
