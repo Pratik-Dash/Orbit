@@ -10,6 +10,7 @@ const SocialMediaContextProvider = ({children}) => {
    const [loggedInUser,setLoggedInUser]  = useState(null)
    const [errorMessage,setErrorMessage] = useState(null)
    const[isUserLoading,setUserLoading] = useState(true)
+   const [createPostLoader,setCreatePostLoader] = useState(true)
     const navigate = useNavigate()
   
 
@@ -17,7 +18,8 @@ const SocialMediaContextProvider = ({children}) => {
     const fetchPosts = async() => {
       try{
           const {data:{posts}} = await axios.get("/api/posts")
-          setPosts(posts)  
+          setPosts(posts)
+          setCreatePostLoader(false)  
       }
       catch(error){
           console.log(error)
@@ -32,7 +34,6 @@ const SocialMediaContextProvider = ({children}) => {
           
           const{data:{users}} = await axios.get("/api/users")
           setUsers(users)
-          console.log(isUserLoading)
           setUserLoading(false)
         }
         catch(error){
@@ -57,9 +58,9 @@ const SocialMediaContextProvider = ({children}) => {
       
       localStorage.setItem("authToken",encodedToken)
       
-      // localStorage.setItem("currentLoggedInUser",JSON.stringify(foundUser))
+       localStorage.setItem("currentLoggedInUser",JSON.stringify(foundUser))
       setLoggedInUser(foundUser)
-
+      console.log(encodedToken)
      const redirectUrl = localStorage.getItem('redirectUrl')
      if(redirectUrl){
       navigate(redirectUrl)
@@ -79,8 +80,23 @@ const SocialMediaContextProvider = ({children}) => {
     localStorage.clear()
     navigate("/")
    }
+   const createPost = async(content) => {
+    setCreatePostLoader(true)
+    const encodedToken = localStorage.getItem("authToken")
+    const headers = {authorization:encodedToken}
+    try{
+      const {data:{posts}} = await axios.post("/api/posts",{postData:content},{headers})
+      setPosts(posts)
+      setCreatePostLoader(false)
+      
+    }
+    catch(error){
+      setErrorMessage(error)
+    }
+ 
+   }
    return(
-    <SocialMediaContext.Provider value = {{users,loggedInUser,posts,errorMessage,loginUser,logoutUser,setUserLoading,isUserLoading}}>
+    <SocialMediaContext.Provider value = {{users,loggedInUser,posts,errorMessage,loginUser,logoutUser,setUserLoading,isUserLoading,createPost,createPostLoader}}>
       {children}
     </SocialMediaContext.Provider>
    )

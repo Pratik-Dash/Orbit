@@ -59,7 +59,7 @@ export const getAllUserPostsHandler = function (schema, request) {
 
 /**
  * This handler handles creating a post in the db.
- * send POST Request at /api/user/posts/
+ * send POST Request at /api/posts/
  * body contains {content}
  * */
 
@@ -78,16 +78,17 @@ export const createPostHandler = function (schema, request) {
       );
     }
     const { postData } = JSON.parse(request.requestBody);
+    console.log(request.requestBody)
     const post = {
       _id: uuid(),
-      ...postData,
+      content:postData,
       likes: {
         likeCount: 0,
         likedBy: [],
         dislikedBy: [],
       },
       username: user.username,
-      createdAt: formatDate(),
+      createdAt: new Date().getTime(),
       updatedAt: formatDate(),
     };
     this.db.posts.insert(post);
