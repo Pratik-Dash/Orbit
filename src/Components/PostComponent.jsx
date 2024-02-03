@@ -1,11 +1,25 @@
-import React, { useContext } from 'react'
+import React, { useContext, useState } from 'react'
 import { SocialMediaContext } from '../Context/DataContext'
-
+import {IconHeart1,IconHeart2} from "./HeartIcon"
 const PostComponent = ({postData}) => {
-  const {users} = useContext(SocialMediaContext)
+  const {users,likePost,dislikePosts} = useContext(SocialMediaContext)
+  const [postLiked,setPostLiked] = useState(null)
+  const userObject = localStorage.getItem("currentLoggedInUser")
+   const loggedInUser = JSON.parse(userObject)
   const currentUser = users.find(user => user.username.toLowerCase() === postData.username.toLowerCase())
   const {likes:{likeCount}} = postData
-  
+  const likedUser = postData.likes.likedBy.find(userWhoLiked => userWhoLiked._id ===loggedInUser._id )
+  const likeCurrentPost = () => {
+    likePost(postData._id)
+    setPostLiked(postLiked =>true)
+    
+  }
+  const dislikeCurrentPost = () => {
+
+    dislikePosts(postData._id)
+    setPostLiked(postLiked =>false)
+    
+  }
   return (
     <div className='post'>
       
@@ -22,8 +36,11 @@ const PostComponent = ({postData}) => {
       </div>
      <div className='post-actions'>
      <div className='post-impressions'>
-     <span>{` ${likeCount}`}</span>
-     <span class="material-symbols-rounded" style = {{color:"#B14AED"}}>favorite</span>
+
+     
+     <span className='like-counter' onClick={!postLiked?likeCurrentPost:dislikeCurrentPost}>
+
+    { likedUser?<IconHeart2/>:<IconHeart1/>}{` ${likeCount}`}</span>
      </div>
      
      <span class="material-symbols-rounded" style = {{color:"#B14AED"}}>mode_comment</span>
