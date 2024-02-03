@@ -19,6 +19,7 @@ export const posts = [
     username: "adarshbalika",
     createdAt: new Date().getTime(),
     updatedAt: formatDate(),
+    bookmarked:false
   },
   {
     _id: uuid(),
@@ -31,6 +32,7 @@ export const posts = [
     username: "pratikdash",
     createdAt: new Date().getTime(),
     updatedAt: formatDate(),
+    bookmarked:false
   },
   {
     _id: uuid(),
@@ -43,6 +45,7 @@ export const posts = [
     username: "pratikdash",
     createdAt: new Date().getTime(),
     updatedAt: formatDate(),
+    bookmarked:false
   },
   {
     _id: uuid(),
@@ -55,6 +58,7 @@ export const posts = [
     username: "pratikdash",
     createdAt: new Date().getTime(),
     updatedAt: formatDate(),
+    bookmarked:false
   },
   
 ];

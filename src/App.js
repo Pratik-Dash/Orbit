@@ -16,7 +16,7 @@ import ProtectRoutes from "./Components/HigherOrderRouteProtection";
 import Layout from "./Components/AppLayout";
 import ThirdPersonProfile from "./Pages/ThirdPersonProfile";
 import Mockman from "mockman-js";
-
+import BookMarks from "./Pages/Bookmarks";
 
 function App() {
   return (
@@ -28,6 +28,7 @@ function App() {
      
       <Route path = "/" element = {<ProtectRoutes><LandingPage/></ProtectRoutes>}/>
       <Route path = "/home" element = {<ProtectRoutes><Layout><Homepage/></Layout></ProtectRoutes>}/>
+      <Route path = "/bookmarks" element = {<ProtectRoutes><Layout><BookMarks/></Layout></ProtectRoutes>}/>
       <Route path = "/login" element = {<LoginPage/>}/>
       <Route path = "/sign-up" element = {<SignupPage/>}/>
       <Route path = "/component-test" element = {<SinglePost/>}/>

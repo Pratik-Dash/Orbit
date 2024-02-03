@@ -98,12 +98,30 @@ const SocialMediaContextProvider = ({children}) => {
  
    }
    //post operations
+   const getPostByPostId = async(postId) => {
+    try{
+      const{data:{post}} = await axios.get(`/api/posts/${postId}`)
+      return post
+  }
+  catch(error){
+    console.log(error)
+  }
+  
+   }
    const likePost = async(postId) => {
     const encodedToken = localStorage.getItem("authToken")
     const headers = {authorization:encodedToken}
+    
     try{
-    const{data:{posts}} = await axios.post(`/api/posts/like/${postId}`,{},{headers})
-    setPosts(posts)
+    const{data:{posts:LatestPostsData}} = await axios.post(`/api/posts/like/${postId}`,{},{headers})
+    const postsWithUpdatedLikes = LatestPostsData.map(latestPost =>{
+      const existingPost = posts.find(post => post._id === latestPost._id)
+      if(existingPost){
+        return {...existingPost,likes:{...latestPost.likes}}
+      }
+      return latestPost
+    })
+    setPosts(postsWithUpdatedLikes)
     
     }
     catch(error){
@@ -111,20 +129,47 @@ const SocialMediaContextProvider = ({children}) => {
     }
    }
    const dislikePosts = async(postId) => {
-    setPostOperationLoader(true)
+   
     const encodedToken = localStorage.getItem("authToken")
     const headers = {authorization:encodedToken}
     try{
-    const{data:{posts}} = await axios.post(`/api/posts/dislike/${postId}`,{},{headers})
-    setPosts(posts)
-    setPostOperationLoader(false)
+    const{data:{posts:LatestPostsData}} = await axios.post(`/api/posts/dislike/${postId}`,{},{headers})
+    const postWithUpdatedLikes = LatestPostsData.map(latestPost => {
+      const existingPostData = posts.find(post => post._id ===latestPost._id)
+      if(existingPostData){
+        return{...existingPostData, likes:{...latestPost.likes}}
+      }
+      return latestPost
+    })
+    setPosts(postWithUpdatedLikes)
+    
     }
     catch(error){
       setErrorMessage(error)
     }
    }
+   const bookmarkPost = (postId) => {
+     
+      const updatedPostsData = posts.map(post =>{
+        if(post._id === postId){
+          return {...post, bookmarked:true}
+        }
+        return post
+      })
+      setPosts(updatedPostsData)
+
+   }
+   const removeBookmark = (postId) => {
+    const updatedPostsData = posts.map(post =>{
+      if(post._id === postId){
+        return{...post, bookmarked:false}
+      }
+      return post
+    })
+    setPosts(updatedPostsData)
+   }
    return(
-    <SocialMediaContext.Provider value = {{users,loggedInUser,posts,errorMessage,loginUser,logoutUser,setUserLoading,isUserLoading,createPost,createPostLoader,likePost,dislikePosts,postOperationLoader}}>
+    <SocialMediaContext.Provider value = {{users,loggedInUser,posts,errorMessage,loginUser,logoutUser,setUserLoading,isUserLoading,createPost,createPostLoader,likePost,dislikePosts,postOperationLoader,bookmarkPost,removeBookmark}}>
       {children}
     </SocialMediaContext.Provider>
    )

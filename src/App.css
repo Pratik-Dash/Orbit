@@ -606,6 +606,8 @@ body{
   font-weight: 600;
   margin-bottom: .5rem;
   text-align: left;
+  color: gray;
+  
 }
 /*Layout*/
 
@@ -709,4 +711,17 @@ body{
 .like-counter{
   display: flex;
   align-items: center;
+}
+.bookmark-page{
+  padding: 1rem;
+  margin-top: 1rem;
+  width: 60%;
+}
+.bookmark-sub-heading{
+  width: 100%;
+  font-size: xx-large;
+  font-weight: 600;
+  margin-bottom: .5rem;
+  text-align: left;
+  color: gray;
 }

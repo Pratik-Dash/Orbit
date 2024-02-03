@@ -29,6 +29,48 @@ export const IconHeart1 = (props)=> {
 }
 
 
+export const IconBookmarkCheck1 = (props) => {
+  return (
+    <svg
+      fill="#B14AED"
+      viewBox="0 0 16 16"
+      height="1em"
+      width="1em"
+      {...props}
+    >
+      <path
+        fillRule="evenodd"
+        d="M10.854 5.146a.5.5 0 010 .708l-3 3a.5.5 0 01-.708 0l-1.5-1.5a.5.5 0 11.708-.708L7.5 7.793l2.646-2.647a.5.5 0 01.708 0z"
+      />
+      <path d="M2 2a2 2 0 012-2h8a2 2 0 012 2v13.5a.5.5 0 01-.777.416L8 13.101l-5.223 2.815A.5.5 0 012 15.5V2zm2-1a1 1 0 00-1 1v12.566l4.723-2.482a.5.5 0 01.554 0L13 14.566V2a1 1 0 00-1-1H4z" />
+    </svg>
+  );
+}
+
+export const IconBookmarkCheckFill = (props)=> {
+  return (
+    <svg
+      fill="#B14AED"
+      viewBox="0 0 16 16"
+      height="1em"
+      width="1em"
+      {...props}
+    >
+      <path
+        fillRule="evenodd"
+        d="M2 15.5V2a2 2 0 012-2h8a2 2 0 012 2v13.5a.5.5 0 01-.74.439L8 13.069l-5.26 2.87A.5.5 0 012 15.5zm8.854-9.646a.5.5 0 00-.708-.708L7.5 7.793 6.354 6.646a.5.5 0 10-.708.708l1.5 1.5a.5.5 0 00.708 0l3-3z"
+      />
+    </svg>
+  );
+}
+
+
+
+
+
+
+
+
 
 
 

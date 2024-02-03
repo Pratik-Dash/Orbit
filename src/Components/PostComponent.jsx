@@ -1,9 +1,9 @@
 import React, { useContext, useState } from 'react'
 import { SocialMediaContext } from '../Context/DataContext'
-import {IconHeart1,IconHeart2} from "./HeartIcon"
+import {IconBookmarkCheck1, IconBookmarkCheckFill, IconHeart1,IconHeart2} from "./HeartIcon"
 const PostComponent = ({postData}) => {
-  const {users,likePost,dislikePosts} = useContext(SocialMediaContext)
-  const [postLiked,setPostLiked] = useState(null)
+  const {users,likePost,dislikePosts,bookmarkPost,removeBookmark} = useContext(SocialMediaContext)
+  
   const userObject = localStorage.getItem("currentLoggedInUser")
    const loggedInUser = JSON.parse(userObject)
   const currentUser = users.find(user => user.username.toLowerCase() === postData.username.toLowerCase())
@@ -11,14 +11,22 @@ const PostComponent = ({postData}) => {
   const likedUser = postData.likes.likedBy.find(userWhoLiked => userWhoLiked._id ===loggedInUser._id )
   const likeCurrentPost = () => {
     likePost(postData._id)
-    setPostLiked(postLiked =>true)
     
   }
   const dislikeCurrentPost = () => {
 
     dislikePosts(postData._id)
-    setPostLiked(postLiked =>false)
+   
     
+  }
+  const bookmarkCurrentPost = (postId) => {
+    bookmarkPost(postData._id)
+  
+  }
+  const removeCurrentPostFromBookmarked = (postId) =>{
+
+    removeBookmark(postData._id)
+   
   }
   return (
     <div className='post'>
@@ -38,14 +46,14 @@ const PostComponent = ({postData}) => {
      <div className='post-impressions'>
 
      
-     <span className='like-counter' onClick={!postLiked?likeCurrentPost:dislikeCurrentPost}>
+     <span className='like-counter' onClick={!likedUser?likeCurrentPost:dislikeCurrentPost}>
 
     { likedUser?<IconHeart2/>:<IconHeart1/>}{` ${likeCount}`}</span>
      </div>
      
      <span class="material-symbols-rounded" style = {{color:"#B14AED"}}>mode_comment</span>
      <span class="material-symbols-rounded" style = {{color:"#B14AED"}}>send</span>
-     <span class="material-symbols-rounded" style = {{color:"#B14AED"}}>bookmark_add</span>
+     <span onClick={!postData.bookmarked?bookmarkCurrentPost:removeCurrentPostFromBookmarked}>{!postData.bookmarked?<IconBookmarkCheck1/>:<IconBookmarkCheckFill/>}</span>
      </div>
     </div>
   )
