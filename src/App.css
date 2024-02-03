@@ -706,3 +706,7 @@ body{
   font-weight: 700;
 
 }
+.like-counter{
+  display: flex;
+  align-items: center;
+}

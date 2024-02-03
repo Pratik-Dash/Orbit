@@ -11,6 +11,8 @@ const SocialMediaContextProvider = ({children}) => {
    const [errorMessage,setErrorMessage] = useState(null)
    const[isUserLoading,setUserLoading] = useState(true)
    const [createPostLoader,setCreatePostLoader] = useState(true)
+   const[postOperationLoader,setPostOperationLoader] = useState(true)
+   
     const navigate = useNavigate()
   
 
@@ -95,8 +97,34 @@ const SocialMediaContextProvider = ({children}) => {
     }
  
    }
+   //post operations
+   const likePost = async(postId) => {
+    const encodedToken = localStorage.getItem("authToken")
+    const headers = {authorization:encodedToken}
+    try{
+    const{data:{posts}} = await axios.post(`/api/posts/like/${postId}`,{},{headers})
+    setPosts(posts)
+    
+    }
+    catch(error){
+      setErrorMessage(error)
+    }
+   }
+   const dislikePosts = async(postId) => {
+    setPostOperationLoader(true)
+    const encodedToken = localStorage.getItem("authToken")
+    const headers = {authorization:encodedToken}
+    try{
+    const{data:{posts}} = await axios.post(`/api/posts/dislike/${postId}`,{},{headers})
+    setPosts(posts)
+    setPostOperationLoader(false)
+    }
+    catch(error){
+      setErrorMessage(error)
+    }
+   }
    return(
-    <SocialMediaContext.Provider value = {{users,loggedInUser,posts,errorMessage,loginUser,logoutUser,setUserLoading,isUserLoading,createPost,createPostLoader}}>
+    <SocialMediaContext.Provider value = {{users,loggedInUser,posts,errorMessage,loginUser,logoutUser,setUserLoading,isUserLoading,createPost,createPostLoader,likePost,dislikePosts,postOperationLoader}}>
       {children}
     </SocialMediaContext.Provider>
    )

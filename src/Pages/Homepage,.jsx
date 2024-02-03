@@ -7,7 +7,6 @@ import { InfinitySpin } from 'react-loader-spinner';
 const Homepage = () => {
   const {posts,createPostLoader} = useContext(SocialMediaContext)
   const orderPostsBycreatedDate =  posts.sort((post1,post2) => post2.createdAt - post1.createdAt) 
-  console.log(orderPostsBycreatedDate)
   return (
     <div className='home-page'>
      
