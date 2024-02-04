@@ -382,7 +382,7 @@ body{
   display: flex;
   align-items: center;
   flex-direction: column;
-  max-width: 100%;
+  width: 90%;
   text-align: justify;
   margin: 0 auto;
   line-height: 2;
@@ -407,6 +407,7 @@ body{
   gap: 1rem;
   padding: 1rem;
   align-items: flex-start;
+  cursor: pointer;
 }
 .post-actions{
   width: 100%;
@@ -587,7 +588,7 @@ body{
   
   padding: 1rem;
   margin-top: 1rem;
-  max-width: 60%;
+  width: 60%;
 }
 
 
@@ -724,4 +725,9 @@ body{
   margin-bottom: .5rem;
   text-align: left;
   color: gray;
+}
+.post-detail-page{
+  padding: 1rem;
+  margin-top: 1rem;
+  max-width: 60%;
 }
