@@ -11,7 +11,8 @@ const SocialMediaContextProvider = ({children}) => {
    const [errorMessage,setErrorMessage] = useState(null)
    const[isUserLoading,setUserLoading] = useState(true)
    const [createPostLoader,setCreatePostLoader] = useState(true)
-   const[postOperationLoader,setPostOperationLoader] = useState(true)
+   const[selectedPost,setSelectedPost] = useState(null)
+   const [postOpenLoader,setPostOpenLoader] = useState(true)
    
     const navigate = useNavigate()
   
@@ -97,11 +98,22 @@ const SocialMediaContextProvider = ({children}) => {
     }
  
    }
+   const getUserFromPost = (post) => {
+    const postUser = users?users.find(user => user.username.toLowerCase() === post.username.toLowerCase()):[]
+    return postUser
+   } 
    //post operations
    const getPostByPostId = async(postId) => {
+   
     try{
+      
       const{data:{post}} = await axios.get(`/api/posts/${postId}`)
-      return post
+      setSelectedPost(post)
+      console.log("got post")
+      setPostOpenLoader(false)
+     
+      
+      
   }
   catch(error){
     console.log(error)
@@ -157,6 +169,7 @@ const SocialMediaContextProvider = ({children}) => {
         return post
       })
       setPosts(updatedPostsData)
+      console.log("bookmarked")
 
    }
    const removeBookmark = (postId) => {
@@ -167,9 +180,10 @@ const SocialMediaContextProvider = ({children}) => {
       return post
     })
     setPosts(updatedPostsData)
+    console.log("removed from bookmarks")
    }
    return(
-    <SocialMediaContext.Provider value = {{users,loggedInUser,posts,errorMessage,loginUser,logoutUser,setUserLoading,isUserLoading,createPost,createPostLoader,likePost,dislikePosts,postOperationLoader,bookmarkPost,removeBookmark}}>
+    <SocialMediaContext.Provider value = {{users,loggedInUser,posts,errorMessage,loginUser,logoutUser,setUserLoading,isUserLoading,createPost,createPostLoader,likePost,dislikePosts,bookmarkPost,removeBookmark,getPostByPostId,selectedPost,getUserFromPost,postOpenLoader,setPostOpenLoader}}>
       {children}
     </SocialMediaContext.Provider>
    )

@@ -8,8 +8,6 @@ const ThirdPersonProfile = () => {
   const {posts,users,isUserLoading} = useContext(SocialMediaContext)
   const {userId} = useParams()
   const selectedUser = users && users.find(user => user._id === userId)
-  console.log(users)
-  console.log(selectedUser)
   const selectedUserPosts = selectedUser && posts.filter(post => post.username.toLowerCase() === selectedUser.username.toLowerCase())
 
   
