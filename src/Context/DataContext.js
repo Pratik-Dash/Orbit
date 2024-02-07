@@ -182,8 +182,73 @@ const SocialMediaContextProvider = ({children}) => {
     setPosts(updatedPostsData)
     console.log("removed from bookmarks")
    }
+   //follow/unfollow people
+
+   const followPeople = async(followUserId) => {
+    const encodedToken = localStorage.getItem("authToken")
+    const headers = {authorization:encodedToken}
+    try{
+        const{data:{user,followUser}} = await axios.post(`/api/users/follow/${followUserId}`,{},{headers})
+
+        const usersUpdatedwithloggedInUser = users.map(existingUser => {
+          if(existingUser._id === user._id){
+            return user
+          }
+          return existingUser
+        })
+        setUsers(prev => {
+          return usersUpdatedwithloggedInUser.map(existingUser => {
+            if(existingUser._id === followUser._id){
+              return followUser
+            }
+            return existingUser
+          })
+        })
+        const storedUser = JSON.parse(localStorage.getItem("currentLoggedInUser"))
+        const updatedLoggedInUser = usersUpdatedwithloggedInUser.find(user => user._id === storedUser._id)
+        if(updatedLoggedInUser){
+          setLoggedInUser(prev => updatedLoggedInUser)
+        }
+    }
+    catch(error){
+      console.log(error)
+    }
+   }
+   const unFollowPeople = async(followUserId) => {
+    const encodedToken = localStorage.getItem("authToken")
+    const headers = {authorization:encodedToken}
+    try{
+        const{data:{user,followUser}} = await axios.post(`/api/users/unfollow/${followUserId}`,{},{headers})
+
+        const usersUpdatedwithloggedInUser = users.map(existingUser => {
+          if(existingUser._id === user._id){
+            return user
+          }
+          return existingUser
+        })
+        setUsers(prev => {
+          return usersUpdatedwithloggedInUser.map(existingUser => {
+            if(existingUser._id === followUser._id){
+              return followUser
+            }
+            return existingUser
+          })
+        })
+        const storedUser = JSON.parse(localStorage.getItem("currentLoggedInUser"))
+        const updatedLoggedInUser = usersUpdatedwithloggedInUser.find(user => user._id === storedUser._id)
+        if(updatedLoggedInUser){
+          setLoggedInUser(prev => updatedLoggedInUser)
+        }
+    }
+    catch(error){
+      console.log(error)
+    }
+   }
+    useEffect(() => {
+     console.log(loggedInUser)
+    },[loggedInUser,users])
    return(
-    <SocialMediaContext.Provider value = {{users,loggedInUser,posts,errorMessage,loginUser,logoutUser,setUserLoading,isUserLoading,createPost,createPostLoader,likePost,dislikePosts,bookmarkPost,removeBookmark,getPostByPostId,selectedPost,getUserFromPost,postOpenLoader,setPostOpenLoader}}>
+    <SocialMediaContext.Provider value = {{users,loggedInUser,posts,errorMessage,loginUser,logoutUser,setUserLoading,isUserLoading,createPost,createPostLoader,likePost,dislikePosts,bookmarkPost,removeBookmark,getPostByPostId,selectedPost,getUserFromPost,postOpenLoader,setPostOpenLoader,followPeople,unFollowPeople}}>
       {children}
     </SocialMediaContext.Provider>
    )
