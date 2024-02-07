@@ -1,15 +1,15 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext } from 'react'
 import ProfileStats from '../Components/ProfileStats'
 import { SocialMediaContext } from '../Context/DataContext'
 import PostComponent from '../Components/PostComponent'
 import { useParams } from 'react-router-dom'
 import { InfinitySpin } from 'react-loader-spinner'
 const ThirdPersonProfile = () => {
-  const {posts,users,isUserLoading} = useContext(SocialMediaContext)
+  const {posts,users,isUserLoading,loggedInUser,followPeople,unFollowPeople} = useContext(SocialMediaContext)
   const {userId} = useParams()
   const selectedUser = users && users.find(user => user._id === userId)
   const selectedUserPosts = selectedUser && posts.filter(post => post.username.toLowerCase() === selectedUser.username.toLowerCase())
-
+  const following = loggedInUser && loggedInUser.following.find(following => following._id === selectedUser._id)
   
   return (
     <div className='profile-page'>
@@ -26,14 +26,14 @@ const ThirdPersonProfile = () => {
         {selectedUser && <div className='profile-name'>{`${selectedUser.firstName} ${selectedUser.lastName}`}</div>}
         <div className='profile-handle'>{selectedUser.username}</div>
         <div className='primary-profile-btn'>
-        <button className='follow-profile-btn'>Follow</button>
+        <button className='follow-profile-btn' onClick={() => following?unFollowPeople(selectedUser._id):followPeople(selectedUser._id)}>{following?`Unfollow`:`Follow`}</button>
         
         </div>
         <p className='profile-about'>
             
         </p>
         <div className='profile-stat-container-container'>
-      <ProfileStats/>
+      <ProfileStats selectedUserId = {selectedUser._id}/>
      <div className='currentUser-posts'>
      <span className='posts-header'><h2>{`${selectedUser.firstName}'s posts`}</h2></span>
      {
