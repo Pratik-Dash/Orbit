@@ -731,3 +731,160 @@ body{
   margin-top: 1rem;
   max-width: 60%;
 }
+
+/* Edit-profile-modal*/
+
+.modal-wrapper{
+  
+  position: absolute;
+  display: flex;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 100;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0,0,0,0.4);
+
+  
+
+}
+
+.modal{
+  position: absolute;
+  z-index: 200;
+  background-color: #fff;
+  width: 400px;
+  height: 500px;
+  padding: 30px;
+  border-radius: 4px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+
+  
+  
+}
+.modal-close-btn{
+  background-color: transparent;
+  border: 2px solid #B14AED;
+  border-radius: .2rem;
+  padding:.3rem;
+}
+.modal-header{
+  color: gray;
+  font-size: larger;
+}
+.modal-top{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  align-items: center;
+
+}
+.modal-middle{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.modal-image{
+  height: 80px;
+  width: 80px;
+  border-radius: 5rem;
+}
+
+.avatar{
+  display: flex;
+  align-items: center;
+  gap: 3rem;
+  justify-content: center;
+}
+
+
+
+.modal-fullname{
+  margin-top: .5rem;
+  display: flex;
+  gap: 3rem;
+  justify-content: center;
+  margin-bottom: .5rem;
+  color: rgb(82, 81, 81);
+}
+.modal-username{
+
+  display: flex;
+  gap: 3rem;
+  justify-content: center;
+  margin-bottom: .5rem;
+  color: rgb(82, 81, 81);
+  padding: 1rem;
+  border-bottom: 1px solid gray;
+}
+
+.modal-bio{
+ 
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  box-sizing: border-box;
+  gap:1rem;
+  
+}
+.bio-input{
+  background-color: transparent;
+  border-radius: .4rem;
+  border: 2px solid #B14AED;
+  height: auto;
+  box-sizing: border-box;
+  margin-top: 0;
+  
+ 
+}
+.modal-portfolio{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;  
+  gap:1rem;
+  box-sizing: border-box;
+  width: 100%;
+}
+.bio-and-portfolio{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap:1rem;
+  
+}
+.portfolio-input{
+  padding: .6rem;
+  border: 2px solid #B14AED;
+  border-radius: .4rem;
+  width: 12rem;
+}
+.modal-bottom{
+  padding: .5rem;
+  margin-top: 2rem;
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+
+}
+.modal-save-button{
+  padding: .5rem;
+  background-color: #fff;
+  color: #B14AED;
+  font-weight: 500;
+  font-size: medium;
+  cursor: pointer;
+  border: 2px solid #B14AED;
+  border-radius: .3rem;
+  transition: .4s;
+  width: 5rem;
+  
+}
+.modal-save-button:hover{
+  background-color: #B14AED;
+  color: #fff;
+}
