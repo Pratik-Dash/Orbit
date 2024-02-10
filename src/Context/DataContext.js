@@ -13,6 +13,7 @@ const SocialMediaContextProvider = ({children}) => {
    const [createPostLoader,setCreatePostLoader] = useState(true)
    const[selectedPost,setSelectedPost] = useState(null)
    const [postOpenLoader,setPostOpenLoader] = useState(true)
+   const [uploadLoader,setUploadLoader] = useState(null)
    
     const navigate = useNavigate()
   
@@ -245,10 +246,55 @@ const SocialMediaContextProvider = ({children}) => {
     }
    }
     useEffect(() => {
-     console.log(loggedInUser)
+      console.log(users)
     },[loggedInUser,users])
+
+    const updateProfile = async(userData) => {
+      const encodedToken = localStorage.getItem("authToken")
+      const headers = {authorization:encodedToken}
+
+      const{data:{user}} = await axios.post("/api/users/edit",{userData},{headers})
+      
+      setUsers(prev =>
+        users.map(existingUser =>{
+          if(existingUser._id === user._id){
+            return user
+          }
+          return existingUser
+        })
+      )
+    
+    }
+
+    const uploadProfilePic = async(userId,files) => {
+      setUploadLoader(true)
+      const formData = new FormData();
+    formData.append("file",files[0]);
+    formData.append("upload_preset", "profileImages");
+
+    const url = "https://api.cloudinary.com/v1_1/dr3wa4qwm/image/upload";
+
+    try {
+        const response = await fetch(url, {
+            method: "POST",
+            body: formData
+        });
+
+        if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+
+        const {secure_url} = await response.json();
+        setUploadLoader(false)
+        return secure_url
+       
+       
+    } catch (error) {
+        console.error("Error:", error);
+    }
+    }
    return(
-    <SocialMediaContext.Provider value = {{users,loggedInUser,posts,errorMessage,loginUser,logoutUser,setUserLoading,isUserLoading,createPost,createPostLoader,likePost,dislikePosts,bookmarkPost,removeBookmark,getPostByPostId,selectedPost,getUserFromPost,postOpenLoader,setPostOpenLoader,followPeople,unFollowPeople}}>
+    <SocialMediaContext.Provider value = {{users,loggedInUser,posts,errorMessage,loginUser,logoutUser,setUserLoading,isUserLoading,createPost,createPostLoader,likePost,dislikePosts,bookmarkPost,removeBookmark,getPostByPostId,selectedPost,getUserFromPost,postOpenLoader,setPostOpenLoader,followPeople,unFollowPeople,updateProfile,uploadProfilePic,uploadLoader}}>
       {children}
     </SocialMediaContext.Provider>
    )
