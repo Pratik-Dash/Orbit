@@ -21,10 +21,10 @@ const ThirdPersonProfile = () => {
         ariaLabel="infinity-spin-loading"
       /></div>:<div className='profile-info'>
         <div className='profile-image-container'>
-            <img className='profile-image' src={selectedUser.profilePic} alt='profile'/>
+            <img className='profile-image' src={selectedUser && selectedUser.profilePic} alt='profile'/>
         </div>
         {selectedUser && <div className='profile-name'>{`${selectedUser.firstName} ${selectedUser.lastName}`}</div>}
-        <div className='profile-handle'>{selectedUser.username}</div>
+        <div className='profile-handle'>{selectedUser &&selectedUser.username}</div>
         <div className='primary-profile-btn'>
         <button className='follow-profile-btn' onClick={() => following?unFollowPeople(selectedUser._id):followPeople(selectedUser._id)}>{following?`Unfollow`:`Follow`}</button>
         
@@ -33,9 +33,9 @@ const ThirdPersonProfile = () => {
             
         </p>
         <div className='profile-stat-container-container'>
-      <ProfileStats selectedUserId = {selectedUser._id}/>
+      <ProfileStats selectedUserId = {selectedUser &&selectedUser._id}/>
      <div className='currentUser-posts'>
-     <span className='posts-header'><h2>{`${selectedUser.firstName}'s posts`}</h2></span>
+     <span className='posts-header'><h2>{`${selectedUser &&selectedUser.firstName}'s posts`}</h2></span>
      {
         selectedUserPosts && selectedUserPosts.map(post => 
         <PostComponent postData = {post}/>

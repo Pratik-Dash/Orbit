@@ -7,6 +7,8 @@ import { InfinitySpin } from 'react-loader-spinner'
 import EditProfileModal from '../Components/EditProfileModal'
 import EditIcon from '@mui/icons-material/Edit'; 
 import LogoutIcon from '@mui/icons-material/Logout';
+import Avatar from '@mui/material/Avatar';
+import { deepOrange, deepPurple } from '@mui/material/colors';
 const Profile = () => {
   const {posts,users,logoutUser,isUserLoading} = useContext(SocialMediaContext)
   const userObject = localStorage.getItem("currentLoggedInUser")
@@ -23,6 +25,36 @@ const Profile = () => {
       setProfilePic(updatedLoggedInUser && updatedLoggedInUser.profilePic)
   },[users])
   
+  function stringToColor(string) {
+    let hash = 0;
+    let i;
+  
+    /* eslint-disable no-bitwise */
+    for (i = 0; i < string.length; i += 1) {
+      hash = string.charCodeAt(i) + ((hash << 5) - hash);
+    }
+  
+    let color = '#';
+  
+    for (i = 0; i < 3; i += 1) {
+      const value = (hash >> (i * 8)) & 0xff;
+      color += `00${value.toString(16)}`.slice(-2);
+    }
+    /* eslint-enable no-bitwise */
+  
+    return color;
+  }
+  
+  function stringAvatar(name) {
+    return {
+      sx: {
+        bgcolor: stringToColor(name),
+      },
+      children: `${name.split(' ')[0][0]}${name.split(' ')[1][0]}`,
+    };
+  }
+
+
   return (
     <div className='profile-page'>
     
@@ -35,7 +67,7 @@ const Profile = () => {
       />
       </div>:<div className='profile-info'>
         <div className='profile-image-container'>
-            <img className='profile-image' src={profilePic} alt='profile'/>
+            {profilePic?<img className='profile-image' src={profilePic} alt='profile'/>:<Avatar {...stringAvatar(`${loggedInUser.firstName.charAt(0)} ${loggedInUser.lastName.charAt(0)}`)} sx={{ width: 100, height: 100 }} />}
         </div>
         {loggedInUser && <div className='profile-name'>{`${loggedInUser.firstName} ${loggedInUser.lastName}`}</div>}
         <div className='profile-handle'>@{loggedInUser &&loggedInUser.username}</div>
