@@ -69,7 +69,7 @@ useEffect(() => {
             <span>
             <Button component="label" variant="text" color="secondary">
             <VisuallyHiddenInput type="file"  onChange={handleUploadPropcess}/>
-           {uploadLoader?<ColorRing visible={true} height="50" width="50" ariaLabel="color-ring-loading" wrapperStyle={{}} wrapperClass="color-ring-wrapper" colors={['#B14AED','#B14AED','#B14AED','#B14AED','#B14AED']}/>: <img src={profilePic} alt={user.username} className="modal-image"/>}
+           {uploadLoader?<ColorRing visible={true} height="50" width="50" ariaLabel="color-ring-loading" wrapperStyle={{}} wrapperClass="color-ring-wrapper" colors={['#B14AED','#B14AED','#B14AED','#B14AED','#B14AED']}/>: <img src={profilePic} alt={"Upload profile pic"} className="modal-image"/>}
             </Button>
             </span>
         </div>

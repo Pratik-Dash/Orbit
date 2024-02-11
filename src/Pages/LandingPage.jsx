@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-
+import OrbitIcon from "../Components/OrbitIcon"
 const LandingPage = () => {
   return (
     <div className='landing-page'>
@@ -10,7 +10,7 @@ const LandingPage = () => {
 
 
       <div className='landing-page-actions-container'>
-      <div className='website-logo-landing-page'>Orbit</div>
+      <div className='website-logo-landing-page'><span><OrbitIcon/></span><span>rbit</span></div>
         <div className='action-text'>
         <span> <span>FOLLOW</span> PEOPLE AROUND THE GLOBE</span>
         <span> <span>CONNECT</span> WITH YOUR FRIENDS</span>

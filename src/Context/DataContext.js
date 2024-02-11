@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react"
 import axios from "axios"
 import { useNavigate } from "react-router-dom"
+import Avatar from '@mui/material/Avatar';
 const SocialMediaContext = React.createContext()
 
 const SocialMediaContextProvider = ({children}) => {
@@ -293,8 +294,28 @@ const SocialMediaContextProvider = ({children}) => {
         console.error("Error:", error);
     }
     }
+    useEffect(() => {
+      if(loggedInUser){
+          localStorage.setItem("currentLoggedInUser",JSON.stringify({...loggedInUser}))
+      }
+    },[loggedInUser])
+    const signUpUser = async(userDetails) => {
+      setUserLoading(true)
+        const{data:{createdUser,encodedToken}} = await axios.post("/api/auth/signup",userDetails)
+
+        const{data:{users}} = await axios.get("/api/users")
+          setUsers(users)
+       localStorage.setItem("authToken",encodedToken)
+       const newUser = users.find(user => user._id === createdUser._id)
+       localStorage.setItem("currentLoggedInUser",JSON.stringify(newUser))
+      setLoggedInUser(newUser)
+      navigate("/profile")
+      setUserLoading(false)
+       
+        
+    }
    return(
-    <SocialMediaContext.Provider value = {{users,loggedInUser,posts,errorMessage,loginUser,logoutUser,setUserLoading,isUserLoading,createPost,createPostLoader,likePost,dislikePosts,bookmarkPost,removeBookmark,getPostByPostId,selectedPost,getUserFromPost,postOpenLoader,setPostOpenLoader,followPeople,unFollowPeople,updateProfile,uploadProfilePic,uploadLoader}}>
+    <SocialMediaContext.Provider value = {{users,loggedInUser,posts,errorMessage,loginUser,logoutUser,setUserLoading,isUserLoading,createPost,createPostLoader,likePost,dislikePosts,bookmarkPost,removeBookmark,getPostByPostId,selectedPost,getUserFromPost,postOpenLoader,setPostOpenLoader,followPeople,unFollowPeople,updateProfile,uploadProfilePic,uploadLoader,signUpUser}}>
       {children}
     </SocialMediaContext.Provider>
    )

@@ -82,25 +82,48 @@ body{
 .website-logo-landing-page{
   color: #B14AED;
   font-weight: 900;
-  font-size: 40px;
+  font-size: 55px;
   align-self: flex-end;
   margin-right: 1rem;
+  display:flex ;
+  justify-content: center;
+  box-sizing: border-box;
   
 }
 
+
 /*login page styles*/
 
-.login-input-container{
+.form-group{
   
   height: auto;
-  width: 20rem;
+  width: 30rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
- 
+  box-sizing: border-box;
   padding: 2rem;
   background-color: #28282B;
   border-radius: .6rem;
+  box-shadow: 0 0 7px 5px #B14AED;
+  
+}
+.login-input-container{
+  margin-top: 1rem;
+  height: auto;
+  width: 30rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  box-sizing: border-box;
+  padding: 2rem;
+  background-color: #28282B;
+  border-radius: .6rem;
+  box-shadow: 0 0 7px 5px #B14AED;
+}
+.name-group{
+  display: flex;
+  justify-content: space-between;
   
 }
 .login-page{
@@ -114,8 +137,9 @@ body{
 
 .label-container{
   text-align: left;
-  width: 100%;
+  
   color: darkgray;
+  margin-bottom: 10px;
 }
 .email-input{
 
@@ -172,7 +196,7 @@ body{
 .website-logo-login-page{
   color: #B14AED;
   font-weight: 900;
-  font-size: 40px;
+  font-size: 45px;
   margin-right: 1rem;
   border-bottom: 10px;
 }
@@ -180,6 +204,14 @@ body{
 
   color: #B14AED;
   cursor: pointer;
+}
+.error-text{
+  color: red;
+  font-weight: 600;
+}
+.success-text{
+  color:lightgreen;
+  font-weight:600;
 }
 
 /*sidebar*/
@@ -331,7 +363,7 @@ body{
   justify-content: space-between;
   text-align: left;
 }
-.find-and-follow-people-profile-pic>img{
+.find-people-image{
   height: 30px;
   width: 30px;
   border-radius: 5rem;
@@ -450,7 +482,10 @@ body{
   width: 150px;
   border-radius: 50%;
 }
-
+.profile-image-container{
+  display: flex;
+  justify-content: center;
+}
 
 .profile-name{
   font-weight: 650;
