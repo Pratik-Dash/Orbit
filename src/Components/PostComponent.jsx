@@ -3,6 +3,8 @@ import { SocialMediaContext } from '../Context/DataContext';
 import { IconBookmarkCheck1, IconBookmarkCheckFill, IconHeart1, IconHeart2 } from './HeartIcon';
 import { useNavigate } from 'react-router-dom';
 import { InfinitySpin } from 'react-loader-spinner';
+import Avatar from '@mui/material/Avatar';
+import Stack from '@mui/material/Stack';
 
 const PostComponent = ({ postData }) => {
   const { users, likePost, dislikePosts, bookmarkPost, removeBookmark,isUserLoading } = useContext(SocialMediaContext);
@@ -51,7 +53,7 @@ const PostComponent = ({ postData }) => {
       />:<div className='post'>
       <div className='post-content' onClick={() => navigateTo(`/post/${postData._id}`)}>
         <div className='post-avatar'>
-          <span className="material-symbols-rounded">account_circle</span>
+        <Avatar alt="Remy Sharp" src={currentUser && currentUser.profilePic} />
         </div>
         <div className='post-text'>
           <div className='post-profile-name'>

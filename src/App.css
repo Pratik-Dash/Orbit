@@ -608,6 +608,9 @@ body{
   margin-bottom: .5rem;
   text-align: left;
   color: gray;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   
 }
 /*Layout*/
@@ -887,4 +890,8 @@ body{
 .modal-save-button:hover{
   background-color: #B14AED;
   color: #fff;
+}
+
+.no-post-text{
+  color: gray;
 }
