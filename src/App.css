@@ -930,3 +930,14 @@ body{
 .no-post-text{
   color: gray;
 }
+
+.heading{
+  font-size: xx-large;
+  font-weight: 600;
+  margin-bottom: .5rem;
+  text-align: left;
+  color: gray;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
