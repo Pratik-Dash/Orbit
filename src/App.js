@@ -18,6 +18,7 @@ import ThirdPersonProfile from "./Pages/ThirdPersonProfile";
 import Mockman from "mockman-js";
 import BookMarks from "./Pages/Bookmarks";
 import PostDatail from "./Pages/PostDetail";
+import Explore from "./Pages/ExplorePage";
 
 
 function App() {
@@ -32,6 +33,7 @@ function App() {
       <Route path = "/home" element = {<ProtectRoutes><Layout><Homepage/></Layout></ProtectRoutes>}/>
       <Route path = "/bookmarks" element = {<ProtectRoutes><Layout><BookMarks/></Layout></ProtectRoutes>}/>
       <Route path = "/login" element = {<LoginPage/>}/>
+      <Route path="/explore" element = {<Layout><Explore/></Layout>}/>
       <Route path = "/sign-up" element = {<SignupPage/>}/>
       <Route path = "/component-test" element = {<SinglePost/>}/>
       <Route path = "/profile/:userId" element = {<ProtectRoutes><Layout><ThirdPersonProfile/></Layout></ProtectRoutes>}/>
