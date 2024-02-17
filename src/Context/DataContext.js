@@ -40,6 +40,7 @@ const SocialMediaContextProvider = ({children}) => {
           const{data:{users}} = await axios.get("/api/users")
           setUsers(users)
           setUserLoading(false)
+          
         }
         catch(error){
           console.log(error)
@@ -253,7 +254,7 @@ const SocialMediaContextProvider = ({children}) => {
     const updateProfile = async(userData) => {
       const encodedToken = localStorage.getItem("authToken")
       const headers = {authorization:encodedToken}
-
+      try{
       const{data:{user}} = await axios.post("/api/users/edit",{userData},{headers})
       
       setUsers(prev =>
@@ -264,6 +265,10 @@ const SocialMediaContextProvider = ({children}) => {
           return existingUser
         })
       )
+      }
+      catch(error){
+        console.log(error)
+      }
     
     }
 
