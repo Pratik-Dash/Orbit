@@ -23,7 +23,7 @@ const PostPaper = styled(Paper)(({ theme }) => ({
 
 
 const options = [
-  'Edit'
+  'Edit','Delete'
 ];
 const ITEM_HEIGHT = 30;
 const PostComponent = ({ postData }) => {
@@ -46,6 +46,9 @@ const PostComponent = ({ postData }) => {
 
   const handleEditMode = () => {
     setEditModelEnabled(true)
+  }
+  const handleDelete = () => {
+    
   }
   const handlePostEdit = () => {
     const updatedPost = {postData:postDataEdit}
@@ -139,11 +142,15 @@ const PostComponent = ({ postData }) => {
           },
         }}
       >
-        {options.map((option,index) => (
-          <MenuItem key={index} selected={option === 'Pyxis'} onClick={handleEditMode}>
-            {option}
+        
+          <MenuItem onClick={handleEditMode}>
+            {options[0]}
           </MenuItem>
-        ))}
+
+          <MenuItem onClick={handleDelete}>
+            {options[1]}
+          </MenuItem>
+        
       </Menu>
         </div>}
 
