@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react"
 import axios from "axios"
 import { useNavigate } from "react-router-dom"
-import Avatar from '@mui/material/Avatar';
 const SocialMediaContext = React.createContext()
 
 const SocialMediaContextProvider = ({children}) => {
@@ -56,6 +55,11 @@ const SocialMediaContextProvider = ({children}) => {
    
    },[])
 
+useEffect(() => {
+ console.log(loggedInUser)
+},[loggedInUser])
+
+
    const loginUser = async(username,password) => {
     try{
 
@@ -66,6 +70,7 @@ const SocialMediaContextProvider = ({children}) => {
       
        localStorage.setItem("currentLoggedInUser",JSON.stringify(foundUser))
       setLoggedInUser(foundUser)
+      console.log(foundUser)
       console.log(encodedToken)
      const redirectUrl = localStorage.getItem('redirectUrl')
      if(redirectUrl){
@@ -86,12 +91,12 @@ const SocialMediaContextProvider = ({children}) => {
     localStorage.clear()
     navigate("/")
    }
-   const createPost = async(content) => {
+   const createPost = async(content,mediaUrl = "") => {
     setCreatePostLoader(true)
     const encodedToken = localStorage.getItem("authToken")
     const headers = {authorization:encodedToken}
     try{
-      const {data:{posts}} = await axios.post("/api/posts",{postData:content},{headers})
+      const {data:{posts}} = await axios.post("/api/posts",{postData:content, mediaUrl},{headers})
       setPosts(posts)
       setCreatePostLoader(false)
       
@@ -113,10 +118,7 @@ const SocialMediaContextProvider = ({children}) => {
       const{data:{post}} = await axios.get(`/api/posts/${postId}`)
       setSelectedPost(post)
       console.log("got post")
-      setPostOpenLoader(false)
-     
-      
-      
+      setPostOpenLoader(false)  
   }
   catch(error){
     console.log(error)
@@ -247,9 +249,7 @@ const SocialMediaContextProvider = ({children}) => {
       console.log(error)
     }
    }
-    useEffect(() => {
-      console.log(users)
-    },[loggedInUser,users])
+    
 
     const updateProfile = async(userData) => {
       const encodedToken = localStorage.getItem("authToken")
@@ -272,11 +272,40 @@ const SocialMediaContextProvider = ({children}) => {
     
     }
 
-    const uploadProfilePic = async(userId,files) => {
+    const uploadProfilePic = async(files) => {
       setUploadLoader(true)
       const formData = new FormData();
     formData.append("file",files[0]);
     formData.append("upload_preset", "profileImages");
+
+    const url = "https://api.cloudinary.com/v1_1/dr3wa4qwm/image/upload";
+
+    try {
+        const response = await fetch(url, {
+            method: "POST",
+            body: formData
+        });
+
+        if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+
+        const {secure_url} = await response.json();
+      
+        setUploadLoader(false)
+        return secure_url
+       
+       
+    } catch (error) {
+        console.error("Error:", error);
+    }
+    }
+
+    const uploadPostMedia = async(files) => {
+      setUploadLoader(true)
+      const formData = new FormData();
+    formData.append("file",files[0]);
+    formData.append("upload_preset", "postImages");
 
     const url = "https://api.cloudinary.com/v1_1/dr3wa4qwm/image/upload";
 
@@ -298,7 +327,9 @@ const SocialMediaContextProvider = ({children}) => {
     } catch (error) {
         console.error("Error:", error);
     }
-    }
+  }
+
+
     useEffect(() => {
       if(loggedInUser){
           localStorage.setItem("currentLoggedInUser",JSON.stringify({...loggedInUser}))
@@ -319,8 +350,20 @@ const SocialMediaContextProvider = ({children}) => {
        
         
     }
+    const editPost = async(postId,updatedPost) => {
+      const encodedToken = localStorage.getItem("authToken")
+      const headers = {authorization:encodedToken}
+      try{
+        const{data:{posts}} = await axios.post(`/api/posts/edit/${postId}`,updatedPost,{headers})
+        setPosts(posts)
+        
+      }
+      catch(error){
+        console.log(error)
+      }
+    }
    return(
-    <SocialMediaContext.Provider value = {{users,loggedInUser,posts,errorMessage,loginUser,logoutUser,setUserLoading,isUserLoading,createPost,createPostLoader,likePost,dislikePosts,bookmarkPost,removeBookmark,getPostByPostId,selectedPost,getUserFromPost,postOpenLoader,setPostOpenLoader,followPeople,unFollowPeople,updateProfile,uploadProfilePic,uploadLoader,signUpUser}}>
+    <SocialMediaContext.Provider value = {{users,loggedInUser,posts,errorMessage,loginUser,logoutUser,setUserLoading,isUserLoading,createPost,createPostLoader,likePost,dislikePosts,bookmarkPost,removeBookmark,getPostByPostId,selectedPost,getUserFromPost,postOpenLoader,setPostOpenLoader,followPeople,unFollowPeople,updateProfile,uploadProfilePic,uploadLoader,signUpUser,editPost,uploadPostMedia}}>
       {children}
     </SocialMediaContext.Provider>
    )

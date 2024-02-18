@@ -22,7 +22,7 @@ const Homepage = () => {
       
     }));
     console.log(baseFeedArray)
-  },[loggedInUser,posts,baseFeedArray])
+  },[posts])
   useEffect(() => {
     let sortedPosts;
     if (dropdownState === 'trending') {

@@ -18,7 +18,7 @@ const updateUserDetails = () => {
     
 }
 const handleUploadPropcess = async(e) =>{
-    const secure_url = await uploadProfilePic(user._id,e.target.files)
+    const secure_url = await uploadProfilePic(e.target.files)
     setProfilePic(secure_url)
     
 }

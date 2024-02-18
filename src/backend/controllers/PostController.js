@@ -60,7 +60,7 @@ export const getAllUserPostsHandler = function (schema, request) {
 /**
  * This handler handles creating a post in the db.
  * send POST Request at /api/posts/
- * body contains {content}
+ * body contains {content,mediaUrl}
  * */
 
 export const createPostHandler = function (schema, request) {
@@ -77,11 +77,12 @@ export const createPostHandler = function (schema, request) {
         }
       );
     }
-    const { postData } = JSON.parse(request.requestBody);
+    const { postData,mediaUrl } = JSON.parse(request.requestBody);
     console.log(request.requestBody)
     const post = {
       _id: uuid(),
       content:postData,
+      mediaUrl,
       likes: {
         likeCount: 0,
         likedBy: [],
@@ -124,7 +125,7 @@ export const editPostHandler = function (schema, request) {
       );
     }
     const postId = request.params.postId;
-    const { postData } = JSON.parse(request.requestBody);
+    const { postData:content } = JSON.parse(request.requestBody);
     let post = schema.posts.findBy({ _id: postId }).attrs;
     if (post.username !== user.username) {
       return new Response(
@@ -135,7 +136,7 @@ export const editPostHandler = function (schema, request) {
         }
       );
     }
-    post = { ...post, ...postData };
+    post = { ...post, content };
     this.db.posts.update({ _id: postId }, post);
     return new Response(201, {}, { posts: this.db.posts });
   } catch (error) {
