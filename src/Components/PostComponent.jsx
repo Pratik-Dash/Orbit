@@ -27,7 +27,7 @@ const options = [
 ];
 const ITEM_HEIGHT = 30;
 const PostComponent = ({ postData }) => {
-  const { users, likePost, dislikePosts, bookmarkPost, removeBookmark,createPostLoader,editPost } = useContext(SocialMediaContext);
+  const { users, likePost, dislikePosts, bookmarkPost, removeBookmark,createPostLoader,editPost,deletePost } = useContext(SocialMediaContext);
   const [currentUser, setCurrentUser] = useState(null);
   const userObject = localStorage.getItem('currentLoggedInUser');
   const loggedInUser = JSON.parse(userObject);
@@ -48,7 +48,8 @@ const PostComponent = ({ postData }) => {
     setEditModelEnabled(true)
   }
   const handleDelete = () => {
-    
+    const postId = postData._id
+    deletePost(postId)
   }
   const handlePostEdit = () => {
     const updatedPost = {postData:postDataEdit}
