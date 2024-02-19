@@ -6,6 +6,7 @@ import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import PostComponent from '../Components/PostComponent';
+import { Toaster } from 'react-hot-toast';
 const Explore = () =>{
    const {posts,createPostLoader,} = useContext(SocialMediaContext)
    const [dropdownState,setDropdownState] = useState("latest")
@@ -26,7 +27,7 @@ const Explore = () =>{
   }
    return (
     <div className="home-page">
-     
+     <Toaster/>
      <div className='heading'>Explore<span>
      <FormControl variant="standard" sx={{ m: 1, minWidth: 50 }} color='secondary'>
        <InputLabel id="demo-simple-select-filled-label">Filter:</InputLabel>

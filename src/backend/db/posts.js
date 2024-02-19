@@ -10,8 +10,8 @@ export const posts = [
   {
     _id: "000",
     content:
-      "At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus. Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae. Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat.",
-      mediaUrl:"",
+      "Hi Orbit!",
+      mediaUrl:"https://cff2.earth.com/uploads/2020/08/12212148/satellite-1757979_1920-960x640.jpg",
     likes: {
       likeCount: 10,
       likedBy: ["pratikdash"],
@@ -25,26 +25,26 @@ export const posts = [
   },
   {
     _id: "001",
-    content:"This is a test post",
-    mediaUrl:"",
+    content:"Pinapple on pizza is underrated. Change my mind",
+    mediaUrl:"https://static01.nyt.com/images/2023/03/29/multimedia/23HAMREX2-pineapple-ham-pizza-qwct/HAMREX2-pineapple-ham-pizza-qwct-superJumbo.jpg",
     likes: {
       likeCount: 12,
       likedBy: ["rishabhdubey"],
-      dislikedBy: ["tanaypratap"],
+      dislikedBy: [""],
     },
-    username: "pratikdash",
+    username: "rishabhdubey",
     createdAt: 1638691800000,
     updatedAt: formatDate(),
     bookmarked:false
   },
   {
     _id: "002",
-    content:"This is a test post2",
+    content:"Pinapple does not belong on Pizza",
     mediaUrl:"",
     likes: {
       likeCount: 2,
-      likedBy: [ "rishabhdubey"],
-      dislikedBy: ["tanaypratap"],
+      likedBy: [ "adarshbalika"],
+      dislikedBy: ["rishabhdubey"],
     },
     username: "pratikdash",
     createdAt: 1641074700000,
@@ -53,12 +53,12 @@ export const posts = [
   },
   {
     _id: "003",
-    content:"This is a test post3",
+    content:"Starting my journey to become a web dev, wish me luck :)",
     mediaUrl:"",
     likes: {
       likeCount: 2,
-      likedBy: ["rishabhdubey"],
-      dislikedBy: ["tanaypratap"],
+      likedBy: ["pratikdash","rishabhdubey","adarshbalika"],
+      dislikedBy: [],
     },
     username: "pratikdash",
     createdAt: 1644913200000,
@@ -67,8 +67,8 @@ export const posts = [
   },
   {
     _id: "004",
-    content:"This is a test post4",
-    mediaUrl:"",
+    content:"Recently started learning cypress, I have to say its much better some of the other test automation frameworks (I am looking at you Selenium)",
+    mediaUrl:"https://testomat.io/wp-content/uploads/2022/12/Cypress_architecture.png",
     likes: {
       likeCount: 2,
       likedBy: ["rishabhdubey,pratikdash"],

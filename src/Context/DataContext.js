@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react"
 import axios from "axios"
 import { useNavigate } from "react-router-dom"
+import toast from 'react-hot-toast';
 const SocialMediaContext = React.createContext()
 
 const SocialMediaContextProvider = ({children}) => {
@@ -60,9 +61,7 @@ const SocialMediaContextProvider = ({children}) => {
    
    },[])
 
-useEffect(() => {
- console.log(loggedInUser)
-},[loggedInUser])
+
 
 
    const loginUser = async(username,password) => {
@@ -75,8 +74,7 @@ useEffect(() => {
       
        localStorage.setItem("currentLoggedInUser",JSON.stringify(foundUser))
       setLoggedInUser(foundUser)
-      console.log(foundUser)
-      console.log(encodedToken)
+      
      const redirectUrl = localStorage.getItem('redirectUrl')
      if(redirectUrl){
       navigate(redirectUrl)
@@ -104,10 +102,12 @@ useEffect(() => {
       const {data:{posts}} = await axios.post("/api/posts",{postData:content, mediaUrl},{headers})
       setPosts(posts)
       setCreatePostLoader(false)
+      toast.success("Posted successfully!")
       
     }
     catch(error){
       setErrorMessage(error)
+      toast.error("Failed to post")
     }
  
    }
@@ -122,7 +122,7 @@ useEffect(() => {
       
       const{data:{post}} = await axios.get(`/api/posts/${postId}`)
       setSelectedPost(post)
-      console.log("got post")
+      
       setPostOpenLoader(false)  
   }
   catch(error){
@@ -144,7 +144,6 @@ useEffect(() => {
       return latestPost
     })
     setPosts(postsWithUpdatedLikes)
-    
     }
     catch(error){
       setErrorMessage(error)
@@ -179,7 +178,8 @@ useEffect(() => {
         return post
       })
       setPosts(updatedPostsData)
-      console.log("bookmarked")
+     
+      toast.success("Added to bookmarks")
 
    }
    const removeBookmark = (postId) => {
@@ -190,7 +190,8 @@ useEffect(() => {
       return post
     })
     setPosts(updatedPostsData)
-    console.log("removed from bookmarks")
+    
+    toast.success("Removed from bookmarks")
    }
    //follow/unfollow people
 
@@ -343,10 +344,12 @@ const deletePost = async(postId) => {
     const{data:{posts}} = await axios.delete(`/api/posts/${postId}`,{headers})
    setPosts(posts)
    setCreatePostLoader(false)
+   toast.success("Post deleted successfully!")
     
   }
   catch(error){
     console.log(error)
+    toast.error("Failed to delete :(")
   }
 
 }
@@ -377,14 +380,20 @@ const deletePost = async(postId) => {
       try{
         const{data:{posts}} = await axios.post(`/api/posts/edit/${postId}`,updatedPost,{headers})
         setPosts(posts)
+        toast.success("Updated successfully!")
         
       }
       catch(error){
         console.log(error)
+        toast.error("Update failed :(")
       }
     }
+    const copyPostLinkToClipBoard = (postId) => {
+      navigator.clipboard.writeText(window.location.origin+`/post/${postId}`)
+      toast.success("Successfully copied post link!")
+    }
    return(
-    <SocialMediaContext.Provider value = {{users,loggedInUser,posts,errorMessage,loginUser,logoutUser,setUserLoading,isUserLoading,createPost,createPostLoader,likePost,dislikePosts,bookmarkPost,removeBookmark,getPostByPostId,selectedPost,getUserFromPost,postOpenLoader,setPostOpenLoader,followPeople,unFollowPeople,updateProfile,uploadProfilePic,uploadLoader,signUpUser,editPost,uploadPostMedia,deletePost}}>
+    <SocialMediaContext.Provider value = {{users,loggedInUser,posts,errorMessage,loginUser,logoutUser,setUserLoading,isUserLoading,createPost,createPostLoader,likePost,dislikePosts,bookmarkPost,removeBookmark,getPostByPostId,selectedPost,getUserFromPost,postOpenLoader,setPostOpenLoader,followPeople,unFollowPeople,updateProfile,uploadProfilePic,uploadLoader,signUpUser,editPost,uploadPostMedia,deletePost,copyPostLinkToClipBoard}}>
       {children}
     </SocialMediaContext.Provider>
    )

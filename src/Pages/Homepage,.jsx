@@ -7,6 +7,7 @@ import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
+import { Toaster } from 'react-hot-toast';
 
 const Homepage = () => {
   const {posts,createPostLoader,loggedInUser} = useContext(SocialMediaContext)
@@ -42,6 +43,7 @@ const Homepage = () => {
     
     return (
       <div className='home-page'>
+      <Toaster/>
       <WriteSomething/> 
     <div className='no-post-text'>You're not following anyone. Start adding people to your orbit to see their posts here.</div>
     </div>)
@@ -51,7 +53,7 @@ const Homepage = () => {
      
                                 
       <WriteSomething/> 
-      <div className='sub-heading'>Feed<span>
+      <div className='heading'>Feed<span>
       <FormControl variant="standard" sx={{ m: 1, minWidth: 50 }} color='secondary'>
         <InputLabel id="demo-simple-select-filled-label">Filter:</InputLabel>
         <Select
