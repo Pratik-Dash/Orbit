@@ -39,6 +39,11 @@ const SocialMediaContextProvider = ({children}) => {
           const{data:{users}} = await axios.get("/api/users")
           setUsers(users)
           setUserLoading(false)
+          const storedUser = JSON.parse(localStorage.getItem("currentLoggedInUser"))
+        
+        if(storedUser){
+          setLoggedInUser(prev => storedUser)
+        }
           
         }
         catch(error){
@@ -89,7 +94,7 @@ useEffect(() => {
    }
    const logoutUser = () => {
     localStorage.clear()
-    navigate("/")
+    navigate("/login")
    }
    const createPost = async(content,mediaUrl = "") => {
     setCreatePostLoader(true)
@@ -265,7 +270,9 @@ useEffect(() => {
           return existingUser
         })
       )
+      
       }
+      
       catch(error){
         console.log(error)
       }

@@ -16,6 +16,14 @@ export const LoginPage = () => {
     }
     
   }
+  const guestLogin = () => {
+    try{
+      loginUser("adarshbalika","adarshBalika123")
+    }
+    catch(error){
+      console.log(error)
+    }
+  }
   return (
     <div className='login-page'>
     <div className='website-logo-login-page'>Orbit</div>
@@ -41,6 +49,7 @@ export const LoginPage = () => {
           </div>
 
           <button className='login-button' onClick={loginCurrentUser}>Login</button>
+          <button className='guest-login-button' onClick={guestLogin}>Guest Login</button>
           {errorMessage && <div style={{color:"red"}}>Invalid Credentials</div>}
           <Link to = "/sign-up" style={{textDecoration:"none"}}>
           <div className='create-new-account-text'>Create a new account</div>

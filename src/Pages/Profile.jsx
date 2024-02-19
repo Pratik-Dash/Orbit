@@ -8,7 +8,6 @@ import EditProfileModal from '../Components/EditProfileModal'
 import EditIcon from '@mui/icons-material/Edit'; 
 import LogoutIcon from '@mui/icons-material/Logout';
 import Avatar from '@mui/material/Avatar';
-import { deepOrange, deepPurple } from '@mui/material/colors';
 const Profile = () => {
   const {posts,users,logoutUser,isUserLoading} = useContext(SocialMediaContext)
   const userObject = localStorage.getItem("currentLoggedInUser")
@@ -84,7 +83,7 @@ const Profile = () => {
             
         </p>
         <div className='profile-stat-container-container'>
-      <ProfileStats/>
+      <ProfileStats selectedUserId = {loggedInUser._id}/>
      <div className='currentUser-posts'>
      <span className='posts-header'><h2>{`Your posts`}</h2></span>
      {
