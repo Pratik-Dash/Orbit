@@ -1,70 +1,93 @@
-# Getting Started with Create React App
+# Orbit - A Social Media App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Overview
 
-## Available Scripts
+This is a social media app that allows users to connect, share posts, and engage with other users. The app includes features such as:
 
-In the project directory, you can run:
+- User feed
+- Create a post
+- Post interaction (like, edit, delete)
+- User profile customization
+- Following/unfollowing users
+- Explore feed
+- Bookmarking posts
+- User authentication
 
-### `npm start`
+## Features
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+### User Feed
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+- List all user posts
+- Sort posts by date and trending
 
-### `npm test`
+### Create a Post
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- Users can create new posts to share with others
+  
 
-### `npm run build`
+### Post Interaction
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- Like a post
+- Edit and delete posts
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### User Profile
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- Users can customize their profiles by adding an avatar, bio, and portfolio URL
 
-### `npm run eject`
+### Follow/Unfollow
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+- Users can follow or unfollow other users to stay updated on their activities
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### Explore Feed
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+- Users can explore posts from other users on a dedicated feed
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+### Bookmark Post
 
-## Learn More
+- Users can bookmark posts to save them for later viewing
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### Authentication
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+- Sign-up: New users can create an account
+- Login: Registered users can log in to their accounts
+- Logout: Users can log out of their accounts
 
-### Code Splitting
+## Getting Started
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+To run the app locally, follow these steps:
 
-### Analyzing the Bundle Size
+1. Clone the repository to your local machine.
+2. Navigate to the project directory.
+3. Install dependencies by running `npm install`.
+4. Start the development server by running `npm start`.
+5. Open your browser and go to `http://localhost:3000` to view the app.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+## Technologies Used
 
-### Making a Progressive Web App
+- React.js for building the frontend user interface
+- JWT (JSON Web Tokens) for user authentication
+- Material-UI for styling and UI components
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+## Screenshots
+![image](https://github.com/Pratik-Dash/Orbit/assets/70498020/077840ca-0296-4379-9d29-167f7ab928f6)
+![image](https://github.com/Pratik-Dash/Orbit/assets/70498020/ee3b9c8f-a9a7-4a72-b592-31a2aca017b7)
+![image](https://github.com/Pratik-Dash/Orbit/assets/70498020/c6ec7a7d-a6c9-4695-81ed-90379cacb4c5)
+![image](https://github.com/Pratik-Dash/Orbit/assets/70498020/f21b1842-013b-42d9-9e9c-c27c075a0e3b)
+![image](https://github.com/Pratik-Dash/Orbit/assets/70498020/a93f244d-9450-4a8f-8b9e-6060712efc05)
+![image](https://github.com/Pratik-Dash/Orbit/assets/70498020/2900dd5a-6a6e-4d3b-a0c6-be853c04d125)
+![image](https://github.com/Pratik-Dash/Orbit/assets/70498020/a879c04d-cb61-4d21-af47-680d03b76e5f)
+![image](https://github.com/Pratik-Dash/Orbit/assets/70498020/7995e8d0-cbb2-4799-8670-0dc02f672d15)
+![image](https://github.com/Pratik-Dash/Orbit/assets/70498020/552e7465-dbe2-468f-8e23-4a3fd9f010ae)
 
-### Advanced Configuration
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
 
-### Deployment
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
 
-### `npm run build` fails to minify
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+
+
+
+
+
+
