@@ -7,7 +7,7 @@ import { formatDate } from "../utils/authUtils";
 export const users = [
   {
     _id: "001",
-    profilePic:"https://images.unsplash.com/photo-1488426862026-3ee34a7d66df?q=80&w=1727&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    profilePic:"https://i.pinimg.com/736x/c1/55/d0/c155d0bfb9aad10a111560738cc0a31f.jpg",
     firstName: "Adarsh",
     lastName: "Balika",
     bio:'QA Enginner | front-end developer. Exploring new domains in tech everyday.',
