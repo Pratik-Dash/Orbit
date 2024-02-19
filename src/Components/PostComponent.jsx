@@ -98,7 +98,7 @@ const PostComponent = ({ postData }) => {
       {!isEditModeEnabled?<div className='post-content'>
       <div className='post-content-container'>
         <div className='post-avatar'>
-        <Avatar alt="Pratik Dash" src={currentUser && currentUser.profilePic} />
+        <Avatar alt={postData.username} src={currentUser && currentUser.profilePic} />
         </div>
         <div className='post-text'>
           <div className='post-profile-name'>

@@ -190,6 +190,22 @@ body{
   cursor: pointer;
   transition: .5s;
 }
+.guest-login-button{
+
+  margin-top: 10px;
+  width: 100%;
+  padding: .7rem;
+  background-color: transparent;
+  color: #B14AED;
+  border-bottom: 10px;
+  cursor: pointer;
+  transition: .5s;
+  border: 1px solid #B14AED;
+}
+.guest-login-button:hover{
+  border-color: #592E83;
+  color: #592E83;
+}
 .login-button:hover{
   background-color: #592E83;
 }
@@ -215,18 +231,21 @@ body{
 }
 
 /*sidebar*/
+
 .sidebar{
   
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  width: 15%;
   height: 90vh;
+  width: 18%;
   padding: 1rem;
   overflow-y: hidden;
-  margin-top: 1rem;
-  margin-left: 1rem;
   background-color: white;
+  position: sticky;
+  left: 0;
+  top: 0;
+ 
   
 
 }
@@ -353,6 +372,9 @@ body{
   gap: 2rem;
   margin-top: 40px ;
   margin-right: 1rem;
+  position: sticky;
+  left: 0;
+  top: 0;
 }
 .people-item{
   
@@ -739,9 +761,10 @@ body{
   padding: 1rem;
   position: absolute;
   z-index: 3;
-  background-color: #7a32a4;
+  background-color: rgb(251, 239, 255);
   color: #fff;
   width: 14rem;
+  color: #171717;
 
 }
 .search-result-image>img{
@@ -967,3 +990,7 @@ body{
   height: 100%;
   width: 100%;
 }
+
+
+
+

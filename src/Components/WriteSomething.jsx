@@ -9,7 +9,7 @@ import Badge from '@mui/material/Badge';
 import CloseIcon from '@mui/icons-material/Close';
 const WriteSomething = () => {
   const [postData,setPostData] = useState("")
-  const {createPost,uploadPostMedia,uploadLoader} = useContext(SocialMediaContext)
+  const {createPost,uploadPostMedia,uploadLoader, loggedInUser} = useContext(SocialMediaContext)
   const [postBtnDisabled,setPostBtnDisabled] = useState(true)
   const [postMedia,setPostMedia] = useState("")
 
@@ -42,7 +42,7 @@ const WriteSomething = () => {
     <div className='write-something'>
     <div className='write-something-container'>
       <div className='profileAvatar'>
-      <span class="material-symbols-rounded">account_circle</span>
+      <Avatar alt={postData.username} src={loggedInUser && loggedInUser.profilePic} />
       
       </div>
       <span className='write-something-area'><textarea rows={10} cols={100} style = {{resize:"none"}} placeholder='Write something interesting...'onChange={(e)=> {setPostData(e.target.value)

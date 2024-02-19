@@ -3,6 +3,9 @@ import { SocialMediaContext } from '../Context/DataContext'
 import { useNavigate } from 'react-router-dom'
 import Avatar from '@mui/material/Avatar';
 const FindAndFollowPeople = () => {
+  const {users,loggedInUser,followPeople} = useContext(SocialMediaContext)
+  
+
   function stringToColor(string) {
     let hash = 0;
     let i;
@@ -32,24 +35,22 @@ const FindAndFollowPeople = () => {
     };
   }
   const navigate = useNavigate()
-    const {users} = useContext(SocialMediaContext)
+   
   return (
     <div className='right-side-bar'>
-      <div className='search-people-container'>
-        <input type = "text" placeholder='Find People, Posts, Anything' className='people-search-input'/>
-      </div>
+      
       <div className='people-list'>
-      <div className='people-item whotofollow'><span className='whotofollow-text'>Who to Follow?</span> <span className='showmoretext'>Show More</span></div>
+      <div className='people-item whotofollow'><span className='whotofollow-text'>People you can follow</span></div>
       {
         users.map(user => 
-            <div className='people-item'>
+            {return loggedInUser && user.username !== loggedInUser.username && <div className='people-item'>
             
             {user.profilePic?<img className='find-people-image' src={user.profilePic} alt='profile'/>:<Avatar {...stringAvatar(`${user.firstName.charAt(0)} ${user.lastName.charAt(0)}`)} style={{ width: 30, height: 30, border:"3px solid #B14AED"}} />}
             <div className='people-name-container' onClick={()=> navigate(`/profile/${user._id}`)}>
             <span>{`${user.firstName} ${user.lastName}`}</span>
             </div>
-            <span className='follow-btn'> Follow +</span>
-            </div>
+            <span className='follow-btn' onClick={() => followPeople(user._id)}>{ loggedInUser && loggedInUser.following.find(following => following._id === user._id)?`Following`:`Follow+`}</span>
+            </div>}
         )
       }
       </div>
