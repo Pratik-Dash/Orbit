@@ -27,7 +27,7 @@ const options = [
 ];
 const ITEM_HEIGHT = 30;
 const PostComponent = ({ postData }) => {
-  const { users, likePost, dislikePosts, bookmarkPost, removeBookmark,createPostLoader,editPost,deletePost } = useContext(SocialMediaContext);
+  const { users, likePost, dislikePosts, bookmarkPost, removeBookmark,createPostLoader,editPost,deletePost,copyPostLinkToClipBoard } = useContext(SocialMediaContext);
   const [currentUser, setCurrentUser] = useState(null);
   const userObject = localStorage.getItem('currentLoggedInUser');
   const loggedInUser = JSON.parse(userObject);
@@ -185,7 +185,7 @@ const PostComponent = ({ postData }) => {
             {likedUser ? <IconHeart2 /> : <IconHeart1 />}{` ${likeCount}`}
           </span>
         </div>
-        <ShareIcon fontSize='small' color='secondary' onClick={() => {navigator.clipboard.writeText(window.location.origin+`/post/${postData._id}`)}}/>
+        <ShareIcon fontSize='small' color='secondary' onClick={() => copyPostLinkToClipBoard(postData._id)}/>
         <span onClick={!postData.bookmarked ? bookmarkCurrentPost : removeCurrentPostFromBookmarked}>
           {!postData.bookmarked ? <IconBookmarkCheck1 /> : <IconBookmarkCheckFill />}
         </span>

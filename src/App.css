@@ -300,6 +300,7 @@ body{
   align-items: center;
   justify-content: center;
   gap: .5rem;
+  margin-top: 10px;
   
 }
 .profile-logout-btn{
@@ -556,7 +557,6 @@ body{
 }
 .follow-profile-btn{
   padding: .6rem;
-  margin-top: 10px;
   width: 150px;
   font-weight: 600;
   background-color: #B14AED;

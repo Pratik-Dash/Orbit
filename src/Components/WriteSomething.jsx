@@ -7,6 +7,8 @@ import Avatar from '@mui/material/Avatar';
 import { ColorRing } from "react-loader-spinner";
 import Badge from '@mui/material/Badge';
 import CloseIcon from '@mui/icons-material/Close';
+import { Toaster } from 'react-hot-toast';
+
 const WriteSomething = () => {
   const [postData,setPostData] = useState("")
   const {createPost,uploadPostMedia,uploadLoader, loggedInUser} = useContext(SocialMediaContext)
@@ -14,7 +16,7 @@ const WriteSomething = () => {
   const [postMedia,setPostMedia] = useState("")
 
   const createNewPost = () => {
-    console.log(postData)
+    
     createPost(postData,postMedia)
     setPostData("")
     setPostMedia("")
@@ -40,6 +42,7 @@ const WriteSomething = () => {
 
   return (
     <div className='write-something'>
+    <Toaster/>
     <div className='write-something-container'>
       <div className='profileAvatar'>
       <Avatar alt={postData.username} src={loggedInUser && loggedInUser.profilePic} />

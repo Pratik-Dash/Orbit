@@ -4,13 +4,19 @@ import { SocialMediaContext } from '../Context/DataContext'
 import PostComponent from '../Components/PostComponent'
 import { useParams } from 'react-router-dom'
 import { InfinitySpin } from 'react-loader-spinner'
+import { Button } from '@mui/material'
+import SendIcon from '@mui/icons-material/Send';
 const ThirdPersonProfile = () => {
   const {posts,users,isUserLoading,loggedInUser,followPeople,unFollowPeople} = useContext(SocialMediaContext)
   const {userId} = useParams()
   const selectedUser = users && users.find(user => user._id === userId)
   const selectedUserPosts = selectedUser && posts.filter(post => post.username.toLowerCase() === selectedUser.username.toLowerCase())
   const following = loggedInUser && loggedInUser.following.find(following => following._id === selectedUser._id)
-  
+  const handlePortfolioClick = () => {
+
+    window.open(selectedUser.portfolio, '_blank');
+    
+  }
   return (
     <div className='profile-page'>
     
@@ -27,7 +33,7 @@ const ThirdPersonProfile = () => {
         <div className='profile-handle'>{selectedUser &&selectedUser.username}</div>
         <div className='primary-profile-btn'>
         <button className='follow-profile-btn' onClick={() => following?unFollowPeople(selectedUser._id):followPeople(selectedUser._id)}>{following?`Unfollow`:`Follow`}</button>
-        
+        {loggedInUser.portfolio!== ""&& <Button variant='outlined' color='secondary' startIcon = {<SendIcon/>} onClick={handlePortfolioClick}>Open portfolio</Button>}
         </div>
         <p className='profile-about'>
             

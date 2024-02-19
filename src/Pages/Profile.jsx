@@ -8,6 +8,7 @@ import EditProfileModal from '../Components/EditProfileModal'
 import EditIcon from '@mui/icons-material/Edit'; 
 import LogoutIcon from '@mui/icons-material/Logout';
 import Avatar from '@mui/material/Avatar';
+import SendIcon from '@mui/icons-material/Send';
 const Profile = () => {
   const {posts,users,logoutUser,isUserLoading} = useContext(SocialMediaContext)
   const userObject = localStorage.getItem("currentLoggedInUser")
@@ -23,6 +24,12 @@ const Profile = () => {
       setPortfolio(updatedLoggedInUser && updatedLoggedInUser.portfolio)
       setProfilePic(updatedLoggedInUser && updatedLoggedInUser.profilePic)
   },[users])
+
+  const handlePortfolioClick = () => {
+
+    window.open(portfolio, '_blank');
+    
+  }
   
   function stringToColor(string) {
     let hash = 0;
@@ -73,7 +80,8 @@ const Profile = () => {
         <div className='profile-handle'>{bio}</div>
         <div className='profile-handle'>{portfolio}</div>
         <div className='primary-profile-btn'>
-        <Button variant='outlined' onClick={() => setIsEditModalOpen(true)} color='secondary' startIcon = {<EditIcon/>}>Edit Profile</Button>
+        {loggedInUser.portfolio!== ""&& <Button variant='outlined' color='secondary' startIcon = {<SendIcon/>} onClick={handlePortfolioClick}>Open portfolio</Button>}
+        <Button variant='outlined' onClick={() => setIsEditModalOpen(true)} color='secondary' startIcon = {<EditIcon/>}></Button>
         {isEditModalOpen?<EditProfileModal isModalOpen={isEditModalOpen} setIsModalOpen={setIsEditModalOpen} user={loggedInUser}/>:""}
         <Button variant='outlined' startIcon = {<LogoutIcon/>} onClick={logoutUser} color='secondary'></Button>
         
