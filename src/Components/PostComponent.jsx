@@ -1,7 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { SocialMediaContext } from '../Context/DataContext';
 import { IconBookmarkCheck1, IconBookmarkCheckFill, IconHeart1, IconHeart2 } from './HeartIcon';
-import { useNavigate } from 'react-router-dom';
 import { InfinitySpin } from 'react-loader-spinner';
 import Avatar from '@mui/material/Avatar';
 import IconButton from '@mui/material/IconButton';
@@ -11,6 +10,7 @@ import MoreVertIcon from '@mui/icons-material/MoreVert';
 import Paper from '@mui/material/Paper';
 import { styled } from '@mui/material/styles';
 import Divider from '@mui/material/Divider';
+import ShareIcon from '@mui/icons-material/Share';
 
 const PostPaper = styled(Paper)(({ theme }) => ({
  
@@ -185,7 +185,7 @@ const PostComponent = ({ postData }) => {
             {likedUser ? <IconHeart2 /> : <IconHeart1 />}{` ${likeCount}`}
           </span>
         </div>
-        <span className="material-symbols-rounded" style={{ color: '#B14AED' }}>send</span>
+        <ShareIcon fontSize='small' color='secondary' onClick={() => {navigator.clipboard.writeText(window.location.origin+`/post/${postData._id}`)}}/>
         <span onClick={!postData.bookmarked ? bookmarkCurrentPost : removeCurrentPostFromBookmarked}>
           {!postData.bookmarked ? <IconBookmarkCheck1 /> : <IconBookmarkCheckFill />}
         </span>
