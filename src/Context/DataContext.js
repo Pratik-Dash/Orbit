@@ -74,16 +74,11 @@ const SocialMediaContextProvider = ({children}) => {
       
        localStorage.setItem("currentLoggedInUser",JSON.stringify(foundUser))
       setLoggedInUser(foundUser)
-      
-     const redirectUrl = localStorage.getItem('redirectUrl')
-     if(redirectUrl){
-      navigate(redirectUrl)
+      navigate("/home")
       localStorage.removeItem('redirectUrl')
      
-     }
-     else{
-      navigate("/home")
-     }
+     
+    
     }
     catch(error){
       setErrorMessage("Invalid Credentials")

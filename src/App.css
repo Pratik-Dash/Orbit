@@ -991,6 +991,12 @@ body{
   width: 100%;
 }
 
-
+.error-page{
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: gray;
+}
 
 
