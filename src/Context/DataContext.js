@@ -328,7 +328,21 @@ useEffect(() => {
         console.error("Error:", error);
     }
   }
+const deletePost = async(postId) => {
+  const encodedToken = localStorage.getItem("authToken")
+  const headers = {authorization:encodedToken}
+  setCreatePostLoader(true)
+  try{
+    const{data:{posts}} = await axios.delete(`/api/posts/${postId}`,{headers})
+   setPosts(posts)
+   setCreatePostLoader(false)
+    
+  }
+  catch(error){
+    console.log(error)
+  }
 
+}
 
     useEffect(() => {
       if(loggedInUser){
@@ -363,7 +377,7 @@ useEffect(() => {
       }
     }
    return(
-    <SocialMediaContext.Provider value = {{users,loggedInUser,posts,errorMessage,loginUser,logoutUser,setUserLoading,isUserLoading,createPost,createPostLoader,likePost,dislikePosts,bookmarkPost,removeBookmark,getPostByPostId,selectedPost,getUserFromPost,postOpenLoader,setPostOpenLoader,followPeople,unFollowPeople,updateProfile,uploadProfilePic,uploadLoader,signUpUser,editPost,uploadPostMedia}}>
+    <SocialMediaContext.Provider value = {{users,loggedInUser,posts,errorMessage,loginUser,logoutUser,setUserLoading,isUserLoading,createPost,createPostLoader,likePost,dislikePosts,bookmarkPost,removeBookmark,getPostByPostId,selectedPost,getUserFromPost,postOpenLoader,setPostOpenLoader,followPeople,unFollowPeople,updateProfile,uploadProfilePic,uploadLoader,signUpUser,editPost,uploadPostMedia,deletePost}}>
       {children}
     </SocialMediaContext.Provider>
    )

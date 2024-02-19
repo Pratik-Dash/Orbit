@@ -257,6 +257,7 @@ export const dislikePostHandler = function (schema, request) {
  * */
 export const deletePostHandler = function (schema, request) {
   const user = requiresAuth.call(this, request);
+  console.log(user)
   try {
     if (!user) {
       return new Response(
