@@ -1,7 +1,8 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import OrbitIcon from "../Components/OrbitIcon"
 const LandingPage = () => {
+  const navigateTo = useNavigate()
   return (
     <div className='landing-page'>
       <div className='landing-page-image-container'>
@@ -17,7 +18,7 @@ const LandingPage = () => {
         <span><span>SHARE</span> WHAT YOU THINKING</span>
         </div>
         <div className='action-buttons'>
-            <button className='landing-page-action-button'>
+            <button className='landing-page-action-button' onClick={() => navigateTo("/sign-up")}>
                 Join Now
             </button>
             <Link to = "/login" style={{ textDecoration: 'none' }}>
